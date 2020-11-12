@@ -1,0 +1,278 @@
+{
+  "contractName": "ISmartToken",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "contract ISmartTokenConverter",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"contract ISmartTokenConverter\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartToken.sol\":\"ISmartToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartToken.sol\":{\"keccak256\":\"0x7e46ddcc998da583b09779ceb401ee5552b36d88b0582b54f2f61b62dd4f32c5\",\"urls\":[\"bzz-raw://e761053141acbb7986d53e58300115c58ef2e61025e3b0a6d0021114678fa197\",\"dweb:/ipfs/QmYWnvtxPkDiNVqijpaV75txgrmAifYz7RD1uuxwVWW43g\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartTokenConverter.sol\":{\"keccak256\":\"0xf0ccfa646bfd2f364e42ae9baf86e51a7b8f5c80ad460f4e8f4e55a7f1e4b211\",\"urls\":[\"bzz-raw://0f318ca37c40b5772be5456a7323b20d748fc69aa06c803d9e771d5d29d96dac\",\"dweb:/ipfs/QmcYzKfbMkJmfM3q4XWdNPJUsN61ENPVbzz8NM1ADCDbaJ\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"./ISmartTokenConverter.sol\";\n\n\ninterface ISmartToken {\n    function owner() external view returns (ISmartTokenConverter);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartToken.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartToken.sol",
+    "exportedSymbols": {
+      "ISmartToken": [
+        19139
+      ]
+    },
+    "id": 19140,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19131,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:51"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 19132,
+        "nodeType": "ImportDirective",
+        "scope": 19140,
+        "sourceUnit": 19937,
+        "src": "25:56:51",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartTokenConverter.sol",
+        "file": "./ISmartTokenConverter.sol",
+        "id": 19133,
+        "nodeType": "ImportDirective",
+        "scope": 19140,
+        "sourceUnit": 19163,
+        "src": "82:36:51",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19139,
+        "linearizedBaseContracts": [
+          19139
+        ],
+        "name": "ISmartToken",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19138,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "owner",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19134,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "163:2:51"
+            },
+            "returnParameters": {
+              "id": 19137,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19136,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19138,
+                  "src": "189:20:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ISmartTokenConverter_$19162",
+                    "typeString": "contract ISmartTokenConverter"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19135,
+                    "name": "ISmartTokenConverter",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19162,
+                    "src": "189:20:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ISmartTokenConverter_$19162",
+                      "typeString": "contract ISmartTokenConverter"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "188:22:51"
+            },
+            "scope": 19139,
+            "src": "149:62:51",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19140,
+        "src": "121:92:51"
+      }
+    ],
+    "src": "0:214:51"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartToken.sol",
+    "exportedSymbols": {
+      "ISmartToken": [
+        19139
+      ]
+    },
+    "id": 19140,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19131,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:51"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 19132,
+        "nodeType": "ImportDirective",
+        "scope": 19140,
+        "sourceUnit": 19937,
+        "src": "25:56:51",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ISmartTokenConverter.sol",
+        "file": "./ISmartTokenConverter.sol",
+        "id": 19133,
+        "nodeType": "ImportDirective",
+        "scope": 19140,
+        "sourceUnit": 19163,
+        "src": "82:36:51",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19139,
+        "linearizedBaseContracts": [
+          19139
+        ],
+        "name": "ISmartToken",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19138,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "owner",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19134,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "163:2:51"
+            },
+            "returnParameters": {
+              "id": 19137,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19136,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19138,
+                  "src": "189:20:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ISmartTokenConverter_$19162",
+                    "typeString": "contract ISmartTokenConverter"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19135,
+                    "name": "ISmartTokenConverter",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19162,
+                    "src": "189:20:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ISmartTokenConverter_$19162",
+                      "typeString": "contract ISmartTokenConverter"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "188:22:51"
+            },
+            "scope": 19139,
+            "src": "149:62:51",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19140,
+        "src": "121:92:51"
+      }
+    ],
+    "src": "0:214:51"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.748Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,796 @@
+{
+  "contractName": "IOasisExchange",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "buyGem",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "payGem",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "payAmt",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBuyAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "fillAmt",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "payGem",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "payAmt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "buyGem",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minFillAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "sellAllAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "fillAmt",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"buyGem\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"payGem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"payAmt\",\"type\":\"uint256\"}],\"name\":\"getBuyAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"fillAmt\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"payGem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"payAmt\",\"type\":\"uint256\"},{\"internalType\":\"contract IERC20\",\"name\":\"buyGem\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"minFillAmount\",\"type\":\"uint256\"}],\"name\":\"sellAllAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"fillAmt\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IOasisExchange.sol\":\"IOasisExchange\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IOasisExchange.sol\":{\"keccak256\":\"0x9f8735ab324419fad33d1300338c71cacd32298d5bf7b46a81fe98467cac0fc2\",\"urls\":[\"bzz-raw://f5b778c4536926f923f7b5b29fcdc8ac95d742af31c5f6e4eed02f71fbf95b29\",\"dweb:/ipfs/QmSUQTHsEuPpaYpodTjHx9qKSF7g8wLMdYtGYxHaSNCsWw\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\n\ninterface IOasisExchange {\n    function getBuyAmount(IERC20 buyGem, IERC20 payGem, uint256 payAmt)\n        external\n        view\n        returns (uint256 fillAmt);\n\n    function sellAllAmount(IERC20 payGem, uint256 payAmt, IERC20 buyGem, uint256 minFillAmount)\n        external\n        returns (uint256 fillAmt);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IOasisExchange.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IOasisExchange.sol",
+    "exportedSymbols": {
+      "IOasisExchange": [
+        19100
+      ]
+    },
+    "id": 19101,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19074,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:49"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 19075,
+        "nodeType": "ImportDirective",
+        "scope": 19101,
+        "sourceUnit": 19937,
+        "src": "25:56:49",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19100,
+        "linearizedBaseContracts": [
+          19100
+        ],
+        "name": "IOasisExchange",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19086,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBuyAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19082,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19077,
+                  "name": "buyGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "137:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19076,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "137:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19079,
+                  "name": "payGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "152:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19078,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "152:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19081,
+                  "name": "payAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "167:14:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19080,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "167:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:46:49"
+            },
+            "returnParameters": {
+              "id": 19085,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19084,
+                  "name": "fillAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "230:15:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19083,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "230:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "229:17:49"
+            },
+            "scope": 19100,
+            "src": "115:132:49",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19099,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sellAllAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19095,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19088,
+                  "name": "payGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "276:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19087,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "276:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19090,
+                  "name": "payAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "291:14:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19089,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "291:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19092,
+                  "name": "buyGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "307:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19091,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "307:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19094,
+                  "name": "minFillAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "322:21:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19093,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:69:49"
+            },
+            "returnParameters": {
+              "id": 19098,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19097,
+                  "name": "fillAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "379:15:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19096,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "379:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "378:17:49"
+            },
+            "scope": 19100,
+            "src": "253:143:49",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19101,
+        "src": "84:314:49"
+      }
+    ],
+    "src": "0:399:49"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IOasisExchange.sol",
+    "exportedSymbols": {
+      "IOasisExchange": [
+        19100
+      ]
+    },
+    "id": 19101,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19074,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:49"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 19075,
+        "nodeType": "ImportDirective",
+        "scope": 19101,
+        "sourceUnit": 19937,
+        "src": "25:56:49",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19100,
+        "linearizedBaseContracts": [
+          19100
+        ],
+        "name": "IOasisExchange",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19086,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBuyAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19082,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19077,
+                  "name": "buyGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "137:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19076,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "137:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19079,
+                  "name": "payGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "152:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19078,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "152:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19081,
+                  "name": "payAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "167:14:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19080,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "167:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:46:49"
+            },
+            "returnParameters": {
+              "id": 19085,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19084,
+                  "name": "fillAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19086,
+                  "src": "230:15:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19083,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "230:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "229:17:49"
+            },
+            "scope": 19100,
+            "src": "115:132:49",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19099,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "sellAllAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19095,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19088,
+                  "name": "payGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "276:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19087,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "276:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19090,
+                  "name": "payAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "291:14:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19089,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "291:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19092,
+                  "name": "buyGem",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "307:13:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19091,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "307:6:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19094,
+                  "name": "minFillAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "322:21:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19093,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "322:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:69:49"
+            },
+            "returnParameters": {
+              "id": 19098,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19097,
+                  "name": "fillAmt",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19099,
+                  "src": "379:15:49",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 19096,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "379:7:49",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "378:17:49"
+            },
+            "scope": 19100,
+            "src": "253:143:49",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19101,
+        "src": "84:314:49"
+      }
+    ],
+    "src": "0:399:49"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.748Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

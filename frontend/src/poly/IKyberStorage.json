@@ -1,0 +1,336 @@
+{
+  "contractName": "IKyberStorage",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getReserveIdsPerTokenSrc",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getReserveIdsPerTokenSrc\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberStorage.sol\":\"IKyberStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberStorage.sol\":{\"keccak256\":\"0x8746d4711a9d90ce215b90595e9e58757f149eef94d77bcede5190fb0beb39cc\",\"urls\":[\"bzz-raw://5339ea378b21366ab4f9fdf622fdcb8ebd275ccf83ad48bd1936dfc2cf066bf7\",\"dweb:/ipfs/QmaNCoBjAvW5oZbANESPdnT5RXh8ju2jZyMgxWh4m4Vvtd\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\n\ninterface IKyberStorage {\n    function getReserveIdsPerTokenSrc(\n        IERC20 token\n    ) external view returns (bytes32[] memory);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberStorage.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberStorage.sol",
+    "exportedSymbols": {
+      "IKyberStorage": [
+        18897
+      ]
+    },
+    "id": 18898,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18887,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:46"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18888,
+        "nodeType": "ImportDirective",
+        "scope": 18898,
+        "sourceUnit": 19937,
+        "src": "25:56:46",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18897,
+        "linearizedBaseContracts": [
+          18897
+        ],
+        "name": "IKyberStorage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18896,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReserveIdsPerTokenSrc",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18891,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18890,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18896,
+                  "src": "157:12:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18889,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "157:6:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "147:28:46"
+            },
+            "returnParameters": {
+              "id": 18895,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18894,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18896,
+                  "src": "199:16:46",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18892,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "199:7:46",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18893,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "199:9:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:18:46"
+            },
+            "scope": 18897,
+            "src": "114:103:46",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18898,
+        "src": "84:135:46"
+      }
+    ],
+    "src": "0:220:46"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberStorage.sol",
+    "exportedSymbols": {
+      "IKyberStorage": [
+        18897
+      ]
+    },
+    "id": 18898,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18887,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:46"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18888,
+        "nodeType": "ImportDirective",
+        "scope": 18898,
+        "sourceUnit": 19937,
+        "src": "25:56:46",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18897,
+        "linearizedBaseContracts": [
+          18897
+        ],
+        "name": "IKyberStorage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18896,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReserveIdsPerTokenSrc",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18891,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18890,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18896,
+                  "src": "157:12:46",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18889,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "157:6:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "147:28:46"
+            },
+            "returnParameters": {
+              "id": 18895,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18894,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18896,
+                  "src": "199:16:46",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18892,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "199:7:46",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18893,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "199:9:46",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:18:46"
+            },
+            "scope": 18897,
+            "src": "114:103:46",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18898,
+        "src": "84:135:46"
+      }
+    ],
+    "src": "0:220:46"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.745Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

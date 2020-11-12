@@ -1,0 +1,45 @@
+{
+    "3":{
+        "dexs":{
+            "Lattice":{
+              "id": "Lattice",
+              "name": "Lattice Basic Swap",
+              "address":"0xdb334705681135a347ff328d40bb944be158be24",
+              "logo":"none"
+            },
+            "Mooniswap":{
+              "id": "Mooniswap",
+              "name": "Mooniswap",
+              "address": "0xd4b6e589706551b4f259787911153de0c6cca8fa",
+              "logo":"none"
+            },
+           
+            "Uniswap":{
+              "id": "Uniswap",
+              "name": "Uniswap",
+              "address": "0x6536d42857940e89b08d3b7b6c28c360f20f0e90",
+              "logo":"none"
+            }
+        }
+    },
+    "1":{
+        "dexs":{
+            "Lattice":{
+              "id": "Lattice",
+              "name": "Lattice Basic Swap",
+              "address":"0xdb334705681135a347ff328d40bb944be158be24"
+            },
+            "Mooniswap":{
+              "id": "Mooniswap",
+              "name": "Mooniswap",
+              "address": "0xd4b6e589706551b4f259787911153de0c6cca8fa"
+            },
+           
+            "Uniswap":{
+              "id": "Uniswap",
+              "name": "Uniswap",
+              "address": "0x6536d42857940e89b08d3b7b6c28c360f20f0e90"
+            }
+        }
+    }
+}

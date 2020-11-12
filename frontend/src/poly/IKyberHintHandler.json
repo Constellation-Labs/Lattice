@@ -1,0 +1,999 @@
+{
+  "contractName": "IKyberHintHandler",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "tokenSrc",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IKyberHintHandler.TradeType",
+          "name": "tokenToEthType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "tokenToEthReserveIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "tokenToEthSplits",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "buildTokenToEthHint",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "hint",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "tokenDest",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IKyberHintHandler.TradeType",
+          "name": "ethToTokenType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "ethToTokenReserveIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "ethToTokenSplits",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "buildEthToTokenHint",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "hint",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"tokenDest\",\"type\":\"address\"},{\"internalType\":\"enum IKyberHintHandler.TradeType\",\"name\":\"ethToTokenType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32[]\",\"name\":\"ethToTokenReserveIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256[]\",\"name\":\"ethToTokenSplits\",\"type\":\"uint256[]\"}],\"name\":\"buildEthToTokenHint\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"hint\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"tokenSrc\",\"type\":\"address\"},{\"internalType\":\"enum IKyberHintHandler.TradeType\",\"name\":\"tokenToEthType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32[]\",\"name\":\"tokenToEthReserveIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256[]\",\"name\":\"tokenToEthSplits\",\"type\":\"uint256[]\"}],\"name\":\"buildTokenToEthHint\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"hint\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberHintHandler.sol\":\"IKyberHintHandler\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberHintHandler.sol\":{\"keccak256\":\"0x10089aadeaec71ac574d5c9c31cf8226c6b3f0b821505cc66a61bd206d2cd0d1\",\"urls\":[\"bzz-raw://8a3b4d5819c733b6b708dc2b87676999e06de46544ab16f363a3a3f008930d5a\",\"dweb:/ipfs/QmbfWQiNMedPHBHUptHAPtoMTUkN7TfQLGfnNmXwwtdTUF\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\n\ninterface IKyberHintHandler {\n    enum TradeType {\n        BestOfAll,\n        MaskIn,\n        MaskOut,\n        Split\n    }\n\n    function buildTokenToEthHint(\n        IERC20 tokenSrc,\n        TradeType tokenToEthType,\n        bytes32[] calldata tokenToEthReserveIds,\n        uint256[] calldata tokenToEthSplits\n    ) external view returns (bytes memory hint);\n\n    function buildEthToTokenHint(\n        IERC20 tokenDest,\n        TradeType ethToTokenType,\n        bytes32[] calldata ethToTokenReserveIds,\n        uint256[] calldata ethToTokenSplits\n    ) external view returns (bytes memory hint);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberHintHandler.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberHintHandler.sol",
+    "exportedSymbols": {
+      "IKyberHintHandler": [
+        18811
+      ]
+    },
+    "id": 18812,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18774,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:42"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18775,
+        "nodeType": "ImportDirective",
+        "scope": 18812,
+        "sourceUnit": 19937,
+        "src": "25:56:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18811,
+        "linearizedBaseContracts": [
+          18811
+        ],
+        "name": "IKyberHintHandler",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IKyberHintHandler.TradeType",
+            "id": 18780,
+            "members": [
+              {
+                "id": 18776,
+                "name": "BestOfAll",
+                "nodeType": "EnumValue",
+                "src": "143:9:42"
+              },
+              {
+                "id": 18777,
+                "name": "MaskIn",
+                "nodeType": "EnumValue",
+                "src": "162:6:42"
+              },
+              {
+                "id": 18778,
+                "name": "MaskOut",
+                "nodeType": "EnumValue",
+                "src": "178:7:42"
+              },
+              {
+                "id": 18779,
+                "name": "Split",
+                "nodeType": "EnumValue",
+                "src": "195:5:42"
+              }
+            ],
+            "name": "TradeType",
+            "nodeType": "EnumDefinition",
+            "src": "118:88:42"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18795,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buildTokenToEthHint",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18791,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18782,
+                  "name": "tokenSrc",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "250:15:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18781,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "250:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18784,
+                  "name": "tokenToEthType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "275:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TradeType_$18780",
+                    "typeString": "enum IKyberHintHandler.TradeType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18783,
+                    "name": "TradeType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18780,
+                    "src": "275:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TradeType_$18780",
+                      "typeString": "enum IKyberHintHandler.TradeType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18787,
+                  "name": "tokenToEthReserveIds",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "309:39:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18785,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "309:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18786,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "309:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18790,
+                  "name": "tokenToEthSplits",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "358:35:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18788,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "358:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 18789,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "358:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "240:159:42"
+            },
+            "returnParameters": {
+              "id": 18794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18793,
+                  "name": "hint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "423:17:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 18792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "423:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:19:42"
+            },
+            "scope": 18811,
+            "src": "212:230:42",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18810,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buildEthToTokenHint",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18806,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18797,
+                  "name": "tokenDest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "486:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18796,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "486:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18799,
+                  "name": "ethToTokenType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "512:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TradeType_$18780",
+                    "typeString": "enum IKyberHintHandler.TradeType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18798,
+                    "name": "TradeType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18780,
+                    "src": "512:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TradeType_$18780",
+                      "typeString": "enum IKyberHintHandler.TradeType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18802,
+                  "name": "ethToTokenReserveIds",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "546:39:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18800,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "546:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18801,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "546:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18805,
+                  "name": "ethToTokenSplits",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "595:35:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18803,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "595:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 18804,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "595:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "476:160:42"
+            },
+            "returnParameters": {
+              "id": 18809,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18808,
+                  "name": "hint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "660:17:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 18807,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "660:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "659:19:42"
+            },
+            "scope": 18811,
+            "src": "448:231:42",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18812,
+        "src": "84:597:42"
+      }
+    ],
+    "src": "0:682:42"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberHintHandler.sol",
+    "exportedSymbols": {
+      "IKyberHintHandler": [
+        18811
+      ]
+    },
+    "id": 18812,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18774,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:42"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18775,
+        "nodeType": "ImportDirective",
+        "scope": 18812,
+        "sourceUnit": 19937,
+        "src": "25:56:42",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18811,
+        "linearizedBaseContracts": [
+          18811
+        ],
+        "name": "IKyberHintHandler",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IKyberHintHandler.TradeType",
+            "id": 18780,
+            "members": [
+              {
+                "id": 18776,
+                "name": "BestOfAll",
+                "nodeType": "EnumValue",
+                "src": "143:9:42"
+              },
+              {
+                "id": 18777,
+                "name": "MaskIn",
+                "nodeType": "EnumValue",
+                "src": "162:6:42"
+              },
+              {
+                "id": 18778,
+                "name": "MaskOut",
+                "nodeType": "EnumValue",
+                "src": "178:7:42"
+              },
+              {
+                "id": 18779,
+                "name": "Split",
+                "nodeType": "EnumValue",
+                "src": "195:5:42"
+              }
+            ],
+            "name": "TradeType",
+            "nodeType": "EnumDefinition",
+            "src": "118:88:42"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18795,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buildTokenToEthHint",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18791,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18782,
+                  "name": "tokenSrc",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "250:15:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18781,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "250:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18784,
+                  "name": "tokenToEthType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "275:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TradeType_$18780",
+                    "typeString": "enum IKyberHintHandler.TradeType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18783,
+                    "name": "TradeType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18780,
+                    "src": "275:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TradeType_$18780",
+                      "typeString": "enum IKyberHintHandler.TradeType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18787,
+                  "name": "tokenToEthReserveIds",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "309:39:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18785,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "309:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18786,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "309:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18790,
+                  "name": "tokenToEthSplits",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "358:35:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18788,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "358:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 18789,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "358:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "240:159:42"
+            },
+            "returnParameters": {
+              "id": 18794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18793,
+                  "name": "hint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18795,
+                  "src": "423:17:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 18792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "423:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:19:42"
+            },
+            "scope": 18811,
+            "src": "212:230:42",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18810,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buildEthToTokenHint",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18806,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18797,
+                  "name": "tokenDest",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "486:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18796,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "486:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18799,
+                  "name": "ethToTokenType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "512:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TradeType_$18780",
+                    "typeString": "enum IKyberHintHandler.TradeType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18798,
+                    "name": "TradeType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18780,
+                    "src": "512:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TradeType_$18780",
+                      "typeString": "enum IKyberHintHandler.TradeType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18802,
+                  "name": "ethToTokenReserveIds",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "546:39:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_calldata_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18800,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "546:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 18801,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "546:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 18805,
+                  "name": "ethToTokenSplits",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "595:35:42",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 18803,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "595:7:42",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 18804,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "595:9:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "476:160:42"
+            },
+            "returnParameters": {
+              "id": 18809,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18808,
+                  "name": "hint",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18810,
+                  "src": "660:17:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 18807,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "660:5:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "659:19:42"
+            },
+            "scope": 18811,
+            "src": "448:231:42",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18812,
+        "src": "84:597:42"
+      }
+    ],
+    "src": "0:682:42"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.743Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
