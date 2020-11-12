@@ -1,0 +1,292 @@
+{
+  "contractName": "IBancorContractRegistry",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "contractName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addressOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"contractName\",\"type\":\"bytes32\"}],\"name\":\"addressOf\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IBancorContractRegistry.sol\":\"IBancorContractRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IBancorContractRegistry.sol\":{\"keccak256\":\"0x6616097efb29f3c80fc364efc73fdb9488b6bdc3d63db39c0c25ceebb2af9f0e\",\"urls\":[\"bzz-raw://5db307bfb716bea791a5128d2867cd85fb0592150b8976c361e91abbd21c3884\",\"dweb:/ipfs/QmYheDnsGw4No8WJXHTShJNH1bgaykPvwV3TXgbXMawvcN\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\n\ncontract IBancorContractRegistry {\n    function addressOf(bytes32 contractName) external view returns (address);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IBancorContractRegistry.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IBancorContractRegistry.sol",
+    "exportedSymbols": {
+      "IBancorContractRegistry": [
+        18043
+      ]
+    },
+    "id": 18044,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18035,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18043,
+        "linearizedBaseContracts": [
+          18043
+        ],
+        "name": "IBancorContractRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18042,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addressOf",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18038,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18037,
+                  "name": "contractName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18042,
+                  "src": "84:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 18036,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "84:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "83:22:26"
+            },
+            "returnParameters": {
+              "id": 18041,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18040,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18042,
+                  "src": "129:7:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 18039,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:26",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "128:9:26"
+            },
+            "scope": 18043,
+            "src": "65:73:26",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18044,
+        "src": "26:114:26"
+      }
+    ],
+    "src": "0:141:26"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IBancorContractRegistry.sol",
+    "exportedSymbols": {
+      "IBancorContractRegistry": [
+        18043
+      ]
+    },
+    "id": 18044,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18035,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:26"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18043,
+        "linearizedBaseContracts": [
+          18043
+        ],
+        "name": "IBancorContractRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18042,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addressOf",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18038,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18037,
+                  "name": "contractName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18042,
+                  "src": "84:20:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 18036,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "84:7:26",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "83:22:26"
+            },
+            "returnParameters": {
+              "id": 18041,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18040,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18042,
+                  "src": "129:7:26",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 18039,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "129:7:26",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "128:9:26"
+            },
+            "scope": 18043,
+            "src": "65:73:26",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18044,
+        "src": "26:114:26"
+      }
+    ],
+    "src": "0:141:26"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.730Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

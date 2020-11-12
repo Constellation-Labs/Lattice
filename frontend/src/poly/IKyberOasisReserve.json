@@ -1,0 +1,232 @@
+{
+  "contractName": "IKyberOasisReserve",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "otc",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"otc\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberOasisReserve.sol\":\"IKyberOasisReserve\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberOasisReserve.sol\":{\"keccak256\":\"0xe9e68606a7c6822658427c2d3d72435691d324096d0e2336428d7bfa090c3bc5\",\"urls\":[\"bzz-raw://d19891b8ff938ed10198296c47ecb405e304b1251c1a8e58ca53e7fb6b90c6e1\",\"dweb:/ipfs/QmdrpwkzMYGq9T2ksqsZpYYq1WJTonyqDqjCtcYsCKj7vx\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\n\ninterface IKyberOasisReserve {\n    function otc() external view returns (address);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberOasisReserve.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberOasisReserve.sol",
+    "exportedSymbols": {
+      "IKyberOasisReserve": [
+        18885
+      ]
+    },
+    "id": 18886,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18879,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:45"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18885,
+        "linearizedBaseContracts": [
+          18885
+        ],
+        "name": "IKyberOasisReserve",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18884,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "otc",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18880,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "73:2:45"
+            },
+            "returnParameters": {
+              "id": 18883,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18882,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18884,
+                  "src": "99:7:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 18881,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "99:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "98:9:45"
+            },
+            "scope": 18885,
+            "src": "61:47:45",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18886,
+        "src": "26:84:45"
+      }
+    ],
+    "src": "0:111:45"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IKyberOasisReserve.sol",
+    "exportedSymbols": {
+      "IKyberOasisReserve": [
+        18885
+      ]
+    },
+    "id": 18886,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18879,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:45"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18885,
+        "linearizedBaseContracts": [
+          18885
+        ],
+        "name": "IKyberOasisReserve",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18884,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "otc",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18880,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "73:2:45"
+            },
+            "returnParameters": {
+              "id": 18883,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18882,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18884,
+                  "src": "99:7:45",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 18881,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "99:7:45",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "98:9:45"
+            },
+            "scope": 18885,
+            "src": "61:47:45",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18886,
+        "src": "26:84:45"
+      }
+    ],
+    "src": "0:111:45"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.745Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

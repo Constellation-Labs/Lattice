@@ -1,0 +1,320 @@
+{
+  "contractName": "IUniswapFactory",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getExchange",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapExchange",
+          "name": "exchange",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getExchange\",\"outputs\":[{\"internalType\":\"contract IUniswapExchange\",\"name\":\"exchange\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapFactory.sol\":\"IUniswapFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapExchange.sol\":{\"keccak256\":\"0x41105604646e718e4d15b6408d868f3b54fa7c6e3e86776499e69b673a9daeb8\",\"urls\":[\"bzz-raw://22ba9d9f11db0a564de2cef079629a5b1c6d954dcb2853fae70aaeb3b8aa5d67\",\"dweb:/ipfs/QmPrp5rznEi3nV5YayQ1FALt8PdQiP2NsgBbHLqLzwxFYf\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapFactory.sol\":{\"keccak256\":\"0xc521d09654843f20ec74d6fd2fb55691c902300c9759d243feb9c0ecbecee485\",\"urls\":[\"bzz-raw://60f0afba37c6f4135884e283dc4d52570b9e6cace106a1d5307a3fd8c7574ee4\",\"dweb:/ipfs/QmYsSz9ziT1yrevc68vFxkS7z2gT5SPGLwXrpbWTAKgSBp\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"./IUniswapExchange.sol\";\n\n\ninterface IUniswapFactory {\n    function getExchange(IERC20 token) external view returns (IUniswapExchange exchange);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapFactory.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapFactory.sol",
+    "exportedSymbols": {
+      "IUniswapFactory": [
+        19267
+      ]
+    },
+    "id": 19268,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19258,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:56"
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapExchange.sol",
+        "file": "./IUniswapExchange.sol",
+        "id": 19259,
+        "nodeType": "ImportDirective",
+        "scope": 19268,
+        "sourceUnit": 19257,
+        "src": "25:32:56",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19267,
+        "linearizedBaseContracts": [
+          19267
+        ],
+        "name": "IUniswapFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19266,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExchange",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19262,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19261,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19266,
+                  "src": "113:12:56",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19260,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "113:6:56",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:14:56"
+            },
+            "returnParameters": {
+              "id": 19265,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19264,
+                  "name": "exchange",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19266,
+                  "src": "150:25:56",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapExchange_$19256",
+                    "typeString": "contract IUniswapExchange"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19263,
+                    "name": "IUniswapExchange",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19256,
+                    "src": "150:16:56",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapExchange_$19256",
+                      "typeString": "contract IUniswapExchange"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:27:56"
+            },
+            "scope": 19267,
+            "src": "92:85:56",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19268,
+        "src": "60:119:56"
+      }
+    ],
+    "src": "0:180:56"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapFactory.sol",
+    "exportedSymbols": {
+      "IUniswapFactory": [
+        19267
+      ]
+    },
+    "id": 19268,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19258,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:56"
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapExchange.sol",
+        "file": "./IUniswapExchange.sol",
+        "id": 19259,
+        "nodeType": "ImportDirective",
+        "scope": 19268,
+        "sourceUnit": 19257,
+        "src": "25:32:56",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19267,
+        "linearizedBaseContracts": [
+          19267
+        ],
+        "name": "IUniswapFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19266,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExchange",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19262,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19261,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19266,
+                  "src": "113:12:56",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19260,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "113:6:56",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:14:56"
+            },
+            "returnParameters": {
+              "id": 19265,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19264,
+                  "name": "exchange",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19266,
+                  "src": "150:25:56",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapExchange_$19256",
+                    "typeString": "contract IUniswapExchange"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19263,
+                    "name": "IUniswapExchange",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19256,
+                    "src": "150:16:56",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapExchange_$19256",
+                      "typeString": "contract IUniswapExchange"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:27:56"
+            },
+            "scope": 19267,
+            "src": "92:85:56",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19268,
+        "src": "60:119:56"
+      }
+    ],
+    "src": "0:180:56"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.750Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

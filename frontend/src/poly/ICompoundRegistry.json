@@ -1,0 +1,533 @@
+{
+  "contractName": "ICompoundRegistry",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract ICompoundToken",
+          "name": "cToken",
+          "type": "address"
+        }
+      ],
+      "name": "tokenByCToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "cTokenByToken",
+      "outputs": [
+        {
+          "internalType": "contract ICompoundToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"cTokenByToken\",\"outputs\":[{\"internalType\":\"contract ICompoundToken\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"contract ICompoundToken\",\"name\":\"cToken\",\"type\":\"address\"}],\"name\":\"tokenByCToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompoundRegistry.sol\":\"ICompoundRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompound.sol\":{\"keccak256\":\"0x5260209cf8ed23475047646923fba2afc650fc2fb7f73872229d329cf2302ef8\",\"urls\":[\"bzz-raw://f1bc28d03b01f23381448771b844c56ea3ffef4a7371c90f33139e47f4f772af\",\"dweb:/ipfs/QmSBLkCNoHEwX1FYSbNPxhsy4YtByMsAWGyB2NsSfFogQK\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompoundRegistry.sol\":{\"keccak256\":\"0xd7c239382a9d8c122e43f950e0e5cd7b29c02dc1bc532a283eea000d1f940e22\",\"urls\":[\"bzz-raw://f2e240dae5ec924104d7d3e41f77eff8d9b7fc897e32ea2513f651a092a3af30\",\"dweb:/ipfs/QmUGfHj8skQCKzp1971WfWQhWsxyCGFvnhY3y8K2RGRGQX\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"./ICompound.sol\";\n\n\ncontract ICompoundRegistry {\n    function tokenByCToken(ICompoundToken cToken) external view returns(IERC20);\n    function cTokenByToken(IERC20 token) external view returns(ICompoundToken);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompoundRegistry.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompoundRegistry.sol",
+    "exportedSymbols": {
+      "ICompoundRegistry": [
+        18490
+      ]
+    },
+    "id": 18491,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18473,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:35"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18474,
+        "nodeType": "ImportDirective",
+        "scope": 18491,
+        "sourceUnit": 19937,
+        "src": "25:56:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompound.sol",
+        "file": "./ICompound.sol",
+        "id": 18475,
+        "nodeType": "ImportDirective",
+        "scope": 18491,
+        "sourceUnit": 18472,
+        "src": "82:25:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18490,
+        "linearizedBaseContracts": [
+          18490
+        ],
+        "name": "ICompoundRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18482,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenByCToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18478,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18477,
+                  "name": "cToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18482,
+                  "src": "166:21:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                    "typeString": "contract ICompoundToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18476,
+                    "name": "ICompoundToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18458,
+                    "src": "166:14:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                      "typeString": "contract ICompoundToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:23:35"
+            },
+            "returnParameters": {
+              "id": 18481,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18480,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18482,
+                  "src": "211:6:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18479,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "211:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "210:8:35"
+            },
+            "scope": 18490,
+            "src": "143:76:35",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18489,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cTokenByToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18485,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18484,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18489,
+                  "src": "247:12:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18483,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "247:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "246:14:35"
+            },
+            "returnParameters": {
+              "id": 18488,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18487,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18489,
+                  "src": "283:14:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                    "typeString": "contract ICompoundToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18486,
+                    "name": "ICompoundToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18458,
+                    "src": "283:14:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                      "typeString": "contract ICompoundToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "282:16:35"
+            },
+            "scope": 18490,
+            "src": "224:75:35",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18491,
+        "src": "110:191:35"
+      }
+    ],
+    "src": "0:302:35"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompoundRegistry.sol",
+    "exportedSymbols": {
+      "ICompoundRegistry": [
+        18490
+      ]
+    },
+    "id": 18491,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 18473,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:35"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 18474,
+        "nodeType": "ImportDirective",
+        "scope": 18491,
+        "sourceUnit": 19937,
+        "src": "25:56:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/ICompound.sol",
+        "file": "./ICompound.sol",
+        "id": 18475,
+        "nodeType": "ImportDirective",
+        "scope": 18491,
+        "sourceUnit": 18472,
+        "src": "82:25:35",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 18490,
+        "linearizedBaseContracts": [
+          18490
+        ],
+        "name": "ICompoundRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18482,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenByCToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18478,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18477,
+                  "name": "cToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18482,
+                  "src": "166:21:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                    "typeString": "contract ICompoundToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18476,
+                    "name": "ICompoundToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18458,
+                    "src": "166:14:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                      "typeString": "contract ICompoundToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:23:35"
+            },
+            "returnParameters": {
+              "id": 18481,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18480,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18482,
+                  "src": "211:6:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18479,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "211:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "210:8:35"
+            },
+            "scope": 18490,
+            "src": "143:76:35",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 18489,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cTokenByToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18485,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18484,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18489,
+                  "src": "247:12:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18483,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "247:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "246:14:35"
+            },
+            "returnParameters": {
+              "id": 18488,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18487,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 18489,
+                  "src": "283:14:35",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                    "typeString": "contract ICompoundToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 18486,
+                    "name": "ICompoundToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 18458,
+                    "src": "283:14:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ICompoundToken_$18458",
+                      "typeString": "contract ICompoundToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "282:16:35"
+            },
+            "scope": 18490,
+            "src": "224:75:35",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 18491,
+        "src": "110:191:35"
+      }
+    ],
+    "src": "0:302:35"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.739Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

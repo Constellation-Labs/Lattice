@@ -1,0 +1,533 @@
+{
+  "contractName": "IAaveRegistry",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IAaveToken",
+          "name": "aToken",
+          "type": "address"
+        }
+      ],
+      "name": "tokenByAToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "aTokenByToken",
+      "outputs": [
+        {
+          "internalType": "contract IAaveToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"aTokenByToken\",\"outputs\":[{\"internalType\":\"contract IAaveToken\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IAaveToken\",\"name\":\"aToken\",\"type\":\"address\"}],\"name\":\"tokenByAToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveRegistry.sol\":\"IAaveRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveRegistry.sol\":{\"keccak256\":\"0xfc9a8e76ce9f05896155b8459a358b64999ddbafe469f964b4dd675def847b8d\",\"urls\":[\"bzz-raw://1c86d4a6809aa03469ed28fed5185a2f3f833df8014ba5cdd95d05baa364167b\",\"dweb:/ipfs/QmRgmNsEy1jPETeXf3aZGsFuExkff4gvEEVq5TbqgGhUGW\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveToken.sol\":{\"keccak256\":\"0x20a684e28bae7d0f1cb412e041e154119833f0196a3ababf2fe54595b4a2fc69\",\"urls\":[\"bzz-raw://a1ec107fb01b83c18c2ef8da2c96f766990ed6d35341c93cfff1dfa8c61ddf31\",\"dweb:/ipfs/QmRywxjr6bgze6pRNoW5AmN5RZaXHiKUA66fexnwSv68BX\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"./IAaveToken.sol\";\n\n\ncontract IAaveRegistry {\n    function tokenByAToken(IAaveToken aToken) external view returns(IERC20);\n    function aTokenByToken(IERC20 token) external view returns(IAaveToken);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveRegistry.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveRegistry.sol",
+    "exportedSymbols": {
+      "IAaveRegistry": [
+        17748
+      ]
+    },
+    "id": 17749,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 17731,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 17732,
+        "nodeType": "ImportDirective",
+        "scope": 17749,
+        "sourceUnit": 19937,
+        "src": "25:56:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveToken.sol",
+        "file": "./IAaveToken.sol",
+        "id": 17733,
+        "nodeType": "ImportDirective",
+        "scope": 17749,
+        "sourceUnit": 17780,
+        "src": "82:26:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 17748,
+        "linearizedBaseContracts": [
+          17748
+        ],
+        "name": "IAaveRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 17740,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenByAToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17736,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17735,
+                  "name": "aToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17740,
+                  "src": "163:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                    "typeString": "contract IAaveToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17734,
+                    "name": "IAaveToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17764,
+                    "src": "163:10:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                      "typeString": "contract IAaveToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "162:19:22"
+            },
+            "returnParameters": {
+              "id": 17739,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17738,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17740,
+                  "src": "204:6:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17737,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "204:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "203:8:22"
+            },
+            "scope": 17748,
+            "src": "140:72:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 17747,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "aTokenByToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17743,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17742,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17747,
+                  "src": "240:12:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17741,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "240:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "239:14:22"
+            },
+            "returnParameters": {
+              "id": 17746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17745,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17747,
+                  "src": "276:10:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                    "typeString": "contract IAaveToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17744,
+                    "name": "IAaveToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17764,
+                    "src": "276:10:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                      "typeString": "contract IAaveToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:12:22"
+            },
+            "scope": 17748,
+            "src": "217:71:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 17749,
+        "src": "111:179:22"
+      }
+    ],
+    "src": "0:291:22"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveRegistry.sol",
+    "exportedSymbols": {
+      "IAaveRegistry": [
+        17748
+      ]
+    },
+    "id": 17749,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 17731,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 17732,
+        "nodeType": "ImportDirective",
+        "scope": 17749,
+        "sourceUnit": 19937,
+        "src": "25:56:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IAaveToken.sol",
+        "file": "./IAaveToken.sol",
+        "id": 17733,
+        "nodeType": "ImportDirective",
+        "scope": 17749,
+        "sourceUnit": 17780,
+        "src": "82:26:22",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 17748,
+        "linearizedBaseContracts": [
+          17748
+        ],
+        "name": "IAaveRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 17740,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenByAToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17736,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17735,
+                  "name": "aToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17740,
+                  "src": "163:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                    "typeString": "contract IAaveToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17734,
+                    "name": "IAaveToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17764,
+                    "src": "163:10:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                      "typeString": "contract IAaveToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "162:19:22"
+            },
+            "returnParameters": {
+              "id": 17739,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17738,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17740,
+                  "src": "204:6:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17737,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "204:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "203:8:22"
+            },
+            "scope": 17748,
+            "src": "140:72:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 17747,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "aTokenByToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 17743,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17742,
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17747,
+                  "src": "240:12:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17741,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "240:6:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "239:14:22"
+            },
+            "returnParameters": {
+              "id": 17746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17745,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 17747,
+                  "src": "276:10:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                    "typeString": "contract IAaveToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 17744,
+                    "name": "IAaveToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17764,
+                    "src": "276:10:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAaveToken_$17764",
+                      "typeString": "contract IAaveToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:12:22"
+            },
+            "scope": 17748,
+            "src": "217:71:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 17749,
+        "src": "111:179:22"
+      }
+    ],
+    "src": "0:291:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.727Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

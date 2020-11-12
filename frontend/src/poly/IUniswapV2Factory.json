@@ -1,0 +1,381 @@
+{
+  "contractName": "IUniswapV2Factory",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "getPair",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Exchange",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"tokenA\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"tokenB\",\"type\":\"address\"}],\"name\":\"getPair\",\"outputs\":[{\"internalType\":\"contract IUniswapV2Exchange\",\"name\":\"pair\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Factory.sol\":\"IUniswapV2Factory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/caos/Downloads/1inchProtocol-master/contracts/UniversalERC20.sol\":{\"keccak256\":\"0x3c27ae8eab4fd9fc5e95c164fe6fd7d300c11f6f14c299bb4d4f2bc2f780e932\",\"urls\":[\"bzz-raw://9e241b8811fd9b7adda9915a9df65ab2488a4cda8213aa1b7dfc74b85f824b06\",\"dweb:/ipfs/QmZj7QAVHj5nyK4AZEreaVjtM9ZSPaMmgzithftqLKfyo7\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Exchange.sol\":{\"keccak256\":\"0xe90dc863f9f0c0ed3c6d5cc3e895fa3badcc609ec35550d651dd44294e99b28a\",\"urls\":[\"bzz-raw://586807593597f336371f0deeef0c9f5b225a61939fe8f2ed898f95b7fad63deb\",\"dweb:/ipfs/QmaFYeP8mJTxNnPyz9qMGgjCWRmnHPAsbPSjUh2JGC278e\"]},\"/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Factory.sol\":{\"keccak256\":\"0x20f9b1b61841051b2a56ce326bc0af35d6561dbf84566b92ce2929636a075e40\",\"urls\":[\"bzz-raw://b6c74ac8b2401c5c41d30e2531f13d118be3fb8b91b4b992d3be16f2556bdacd\",\"dweb:/ipfs/Qmefp8ph9XYN2JA4FH24ZecUbENaWsVVo8U34VoewW7eYB\"]},\"@openzeppelin/contracts/math/Math.sol\":{\"keccak256\":\"0x4b5aa451e4e8801478708f94b118a7821c0500d676255eaf89fc78c14856ce4e\",\"urls\":[\"bzz-raw://bed15b3f35ed05505efc8fb5cb01d06c52230fbcaadf4ed24a85b1ac2f15f33c\",\"dweb:/ipfs/QmS6tW81u8E4tvzVfVuqEuMCkdwAozQ6pKJPRBR4JEVmQp\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0x6f2c9955d65c522b80f4b8792f076512d2df947d2112cbc4d98a4781ed42ede2\",\"urls\":[\"bzz-raw://7d8ec81683520c06baeef3f7e06cd82bd6fd5fa611f26857f475f6c829540aff\",\"dweb:/ipfs/QmTDkFzKnrpiV1UKnSoiZAHPuguWzokrr4pFbSPvyaSo56\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x1a8e5072509c5ea7365eb1d48030b9be865140c8fb779968da0a459a0e174a11\",\"urls\":[\"bzz-raw://03335b7b07c7c8c8d613cfdd8ec39a0b5ec133ee510bf2fe6cc5a496767bef4b\",\"dweb:/ipfs/Qmebp4nzPja645c9yXSdJkGq96oU3am3LUnG2K3R7XxyKf\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"./IUniswapV2Exchange.sol\";\n\n\ninterface IUniswapV2Factory {\n    function getPair(IERC20 tokenA, IERC20 tokenB) external view returns (IUniswapV2Exchange pair);\n}\n",
+  "sourcePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Factory.sol",
+  "ast": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Factory.sol",
+    "exportedSymbols": {
+      "IUniswapV2Factory": [
+        19452
+      ]
+    },
+    "id": 19453,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19441,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:58"
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Exchange.sol",
+        "file": "./IUniswapV2Exchange.sol",
+        "id": 19442,
+        "nodeType": "ImportDirective",
+        "scope": 19453,
+        "sourceUnit": 19440,
+        "src": "25:34:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19452,
+        "linearizedBaseContracts": [
+          19452
+        ],
+        "name": "IUniswapV2Factory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19451,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPair",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19444,
+                  "name": "tokenA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "113:13:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19443,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "113:6:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19446,
+                  "name": "tokenB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "128:13:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19445,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "128:6:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:30:58"
+            },
+            "returnParameters": {
+              "id": 19450,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19449,
+                  "name": "pair",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "166:23:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapV2Exchange_$19302",
+                    "typeString": "contract IUniswapV2Exchange"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19448,
+                    "name": "IUniswapV2Exchange",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19302,
+                    "src": "166:18:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV2Exchange_$19302",
+                      "typeString": "contract IUniswapV2Exchange"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:25:58"
+            },
+            "scope": 19452,
+            "src": "96:95:58",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19453,
+        "src": "62:131:58"
+      }
+    ],
+    "src": "0:194:58"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Factory.sol",
+    "exportedSymbols": {
+      "IUniswapV2Factory": [
+        19452
+      ]
+    },
+    "id": 19453,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 19441,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:58"
+      },
+      {
+        "absolutePath": "/Users/caos/Downloads/1inchProtocol-master/contracts/interface/IUniswapV2Exchange.sol",
+        "file": "./IUniswapV2Exchange.sol",
+        "id": 19442,
+        "nodeType": "ImportDirective",
+        "scope": 19453,
+        "sourceUnit": 19440,
+        "src": "25:34:58",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 19452,
+        "linearizedBaseContracts": [
+          19452
+        ],
+        "name": "IUniswapV2Factory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 19451,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPair",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19444,
+                  "name": "tokenA",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "113:13:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19443,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "113:6:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 19446,
+                  "name": "tokenB",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "128:13:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$19936",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19445,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19936,
+                    "src": "128:6:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$19936",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "112:30:58"
+            },
+            "returnParameters": {
+              "id": 19450,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 19449,
+                  "name": "pair",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 19451,
+                  "src": "166:23:58",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IUniswapV2Exchange_$19302",
+                    "typeString": "contract IUniswapV2Exchange"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 19448,
+                    "name": "IUniswapV2Exchange",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 19302,
+                    "src": "166:18:58",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IUniswapV2Exchange_$19302",
+                      "typeString": "contract IUniswapV2Exchange"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:25:58"
+            },
+            "scope": 19452,
+            "src": "96:95:58",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 19453,
+        "src": "62:131:58"
+      }
+    ],
+    "src": "0:194:58"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.17+commit.d19bba13.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-10-25T14:42:35.752Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
