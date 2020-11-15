@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 
 import Header from '../components/Header'
@@ -29,80 +28,22 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Poly from '../pages/Poly'
 import welCome from '../assets/svg/welcome.svg'
 
-const AppWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  overflow-x: hidden;
-`
-
-const HeaderWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  width: 100%;
-  justify-content: space-between;
-`
-
-const BodyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-top: 160px;
-  align-items: center;
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 10;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 16px;
-    padding-top: 2rem;
-  `};
-  z-index: 1;
-`
-
-const WelcomeElement = styled.div`
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    display: none;
-  `};
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  transform: translate(-50%, 60px);
-`
-
-const LatticeEle = styled.div`
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    display: none;
-  `};
-  position: fixed;
-  display: flex;
-  left: 0;
-  bottom: 0;
-  padding: 1.2rem;
-  color: white;
-  z-index: 2;
-`
-const LatticeText = styled.span`
-  font-family: Playfair Display;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 48px;
-  color: #ffffff;
-`
+import styles from './App.module.scss'
 
 function Lattice() {
   return (
-    <LatticeEle>
-      <LatticeText>Lattice</LatticeText>
-    </LatticeEle>
+    <div className={styles.lattice}>
+      <span className={styles.latticeText}>Lattice</span>
+    </div>
   )
 }
 
 function Welcome() {
+  console.log(styles)
   return (
-    <WelcomeElement>
+    <div className={styles.welcome}>
       <img src={welCome} alt="" />
-    </WelcomeElement>
+    </div>
   )
 }
 
@@ -111,13 +52,13 @@ export default function App() {
     <Suspense fallback={null}>
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
-      <AppWrapper>
+      <div className={styles.wrapper}>
         <URLWarning />
         <Welcome />
-        <HeaderWrapper>
+        <div className={styles.header}>
           <Header />
-        </HeaderWrapper>
-        <BodyWrapper>
+        </div>
+        <div className={styles.container}>
           <Popups />
           <Polling />
           <Lattice />
@@ -147,8 +88,8 @@ export default function App() {
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>
-        </BodyWrapper>
-      </AppWrapper>
+        </div>
+      </div>
     </Suspense>
   )
 }

@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  overflow-x: hidden;
+
+  .header {
+    width: 100%;
+    justify-content: space-between;
+    @include flexNoWrap($isRow: true);
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 160px;
+    align-items: center;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    @include smallMedia {
+      padding: 16px;
+      padding-top: 2rem;
+    }
+  }
+}
+
+.welcome {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  transform: translate(-50%, 60px);
+  @include mediumMedia {
+    display: none;
+  }
+}
+
+.lattice {
+  position: fixed;
+  display: flex;
+  left: 0;
+  bottom: 0;
+  padding: 1.2rem;
+  color: $color-white;
+  z-index: 2;
+  @include mediumMedia {
+    display: none;
+  }
+
+  .latticeText {
+    font-family: Playfair Display;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 48px;
+    color: $color-white;
+  }
+}

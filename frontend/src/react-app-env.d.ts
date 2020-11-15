@@ -5,7 +5,6 @@ declare module 'jazzicon' {
 }
 
 declare module 'fortmatic'
-
 interface Window {
   ethereum?: {
     isMetaMask?: true
