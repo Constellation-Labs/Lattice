@@ -58,3 +58,13 @@
     color: $color-white;
   }
 }
+
+.bodyWrapper {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(55, 97, 111, 0.9) 0%, rgba(55, 97, 111, 0.9) 100%);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1rem;
+}

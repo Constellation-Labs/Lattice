@@ -17,13 +17,13 @@ import { useIsTransactionPending, useTransactionAdder } from '../../state/transa
 import { useTokenBalance, useETHBalances } from '../../state/wallet/hooks'
 import { BackArrow, TYPE } from '../../theme'
 import { isAddress } from '../../utils'
-import { BodyWrapper } from '../AppBody'
 import { EmptyState } from './EmptyState'
 import { V1LiquidityInfo } from './MigrateV1Exchange'
 import { AddressZero } from '@ethersproject/constants'
 import { Dots } from '../../components/swap/styleds'
 import { Contract } from '@ethersproject/contracts'
 import { useTotalSupply } from '../../data/TotalSupply'
+import styles from '../App.module.scss'
 
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
 const ZERO = JSBI.BigInt(0)
@@ -154,7 +154,7 @@ export default function RemoveV1Exchange({
   }
 
   return (
-    <BodyWrapper style={{ padding: 24 }} id="remove-v1-exchange">
+    <div className={styles.bodyWrapper} style={{ padding: 24 }} id="remove-v1-exchange">
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/migrate/v1" />
@@ -176,6 +176,6 @@ export default function RemoveV1Exchange({
           <EmptyState message="Loading..." />
         )}
       </AutoColumn>
-    </BodyWrapper>
+    </div>
   )
 }

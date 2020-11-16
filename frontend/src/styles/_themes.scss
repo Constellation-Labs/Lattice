@@ -6,11 +6,19 @@
 $themes: (
   dark: (
     backgroundColor: $color-black,
-    textColor: $color-white
+    textColor: $color-white,
+    labelColor: $color-white,
+    textColor1: $color-white,
+    textColor2: $color-gray-300,
+    textColor3: $color-gray-600
   ),
   light: (
     backgroundColor: $color-white,
-    textColor: $color-black
+    textColor: $color-black,
+    labelColor: $color-white,
+    textColor1: $color-white,
+    textColor2: $color-gray-200,
+    textColor3: $color-gray-100
   )
 );
 

@@ -30,23 +30,6 @@ import welCome from '../assets/svg/welcome.svg'
 
 import styles from './App.module.scss'
 
-function Lattice() {
-  return (
-    <div className={styles.lattice}>
-      <span className={styles.latticeText}>Lattice</span>
-    </div>
-  )
-}
-
-function Welcome() {
-  console.log(styles)
-  return (
-    <div className={styles.welcome}>
-      <img src={welCome} alt="" />
-    </div>
-  )
-}
-
 export default function App() {
   return (
     <Suspense fallback={null}>
@@ -54,14 +37,18 @@ export default function App() {
       <Route component={DarkModeQueryParamReader} />
       <div className={styles.wrapper}>
         <URLWarning />
-        <Welcome />
+        <div className={styles.welcome}>
+          <img src={welCome} alt="" />
+        </div>
         <div className={styles.header}>
           <Header />
         </div>
         <div className={styles.container}>
           <Popups />
           <Polling />
-          <Lattice />
+          <div className={styles.lattice}>
+            <span className={styles.latticeText}>Lattice</span>
+          </div>
           <Web3ReactManager>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
