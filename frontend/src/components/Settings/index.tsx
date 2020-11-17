@@ -16,13 +16,9 @@ import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 import settingIcon from '../../assets/svg/setting.svg'
 
-const StyledMenuIcon = styled.img`
-  width: 20px;
-  transform: translateY(3px);
-  > * {
-    stroke: ${({ theme }) => theme.white};
-  }
-`
+import Button from '../CustomButton'
+
+import styles from './index.module.scss'
 
 const StyledCloseIcon = styled(X)`
   height: 20px;
@@ -36,30 +32,6 @@ const StyledCloseIcon = styled(X)`
   }
 `
 
-const StyledMenuButton = styled.button`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  height: 35px;
-  background-color: ${({ theme }) => theme.baseBg};
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
-
-  :hover,
-  :focus {
-    cursor: pointer;
-    outline: none;
-    background-color: ${({ theme }) => theme.baseBg};
-  }
-
-  svg {
-    margin-top: 2px;
-  }
-`
 const EmojiWrapper = styled.div`
   position: absolute;
   bottom: -6px;
@@ -174,8 +146,8 @@ export default function SettingsTab() {
           </AutoColumn>
         </ModalContentWrapper>
       </Modal>
-      <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledMenuIcon src={settingIcon} />
+      <Button onClick={toggle} id="open-settings-dialog-button" variant={styles.settingsButton}>
+        <img src={settingIcon} width="20" />
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
@@ -183,7 +155,7 @@ export default function SettingsTab() {
             </span>
           </EmojiWrapper>
         ) : null}
-      </StyledMenuButton>
+      </Button>
       {open && (
         <MenuFlyout>
           <AutoColumn gap="md" style={{ padding: '1rem' }}>

@@ -5,20 +5,28 @@
 
 $themes: (
   dark: (
-    backgroundColor: $color-black,
-    textColor: $color-white,
-    labelColor: $color-white,
-    textColor1: $color-white,
-    textColor2: $color-gray-300,
-    textColor3: $color-gray-600
+    backgroundDesktop: url('../assets/images/lattice.png'),
+    navLinkBackground: $gray-500,
+    navLinkColor: $gray-100,
+    navLinkBorder: $gray-100,
+    primaryButtonBackground: rgba($white, 0.1),
+    primaryButtonColor: $gray-100,
+    primaryButtonBorder: $gray-100,
+    pollingColor: $green,
+    mainPanelBackground: rgba($white, 0.1),
+    mainPanelBorder: $gray-100
   ),
   light: (
-    backgroundColor: $color-white,
-    textColor: $color-black,
-    labelColor: $color-white,
-    textColor1: $color-white,
-    textColor2: $color-gray-200,
-    textColor3: $color-gray-100
+    backgroundDesktop: url('../assets/images/lattice.png'),
+    navLinkBackground: $gray-500,
+    navLinkColor: $gray-100,
+    navLinkBorder: $gray-100,
+    primaryButtonBackground: rgba($white, 0.1),
+    primaryButtonColor: $gray-100,
+    primaryButtonBorder: $gray-100,
+    pollingColor: $green,
+    mainPanelBackground: rgba($white, 0.1),
+    mainPanelBorder: $gray-100
   )
 );
 

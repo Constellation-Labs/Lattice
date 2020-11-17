@@ -1,61 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { TYPE, ExternalLink } from '../../theme'
+import { ExternalLink } from '../../theme'
 
 import { useBlockNumber } from '../../state/application/hooks'
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 
-const StyledPolling = styled.div`
-  position: fixed;
-  display: flex;
-  right: 0;
-  bottom: 0;
-  padding: 1.2rem;
-  color: #abf4fa;
-  :hover {
-    opacity: 1;
-  }
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    display: none;
-  `}
-`
-const StyledPollingDot = styled.div`
-  width: 8px;
-  height: 8px;
-  min-height: 8px;
-  min-width: 8px;
-  margin-left: 0.5rem;
-  margin-top: 3px;
-  border-radius: 50%;
-  position: relative;
-  background-color: #abf4fa;
-`
-
-const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-const Spinner = styled.div`
-  animation: ${rotate360} 1s cubic-bezier(0.83, 0, 0.17, 1) infinite;
-  transform: translateZ(0);
-  border-top: 1px solid transparent;
-  border-right: 1px solid transparent;
-  border-bottom: 1px solid transparent;
-  border-left: 2px solid #abf4fa;
-  background: transparent;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  position: relative;
-  left: -3px;
-  top: -3px;
-`
+import styles from './index.module.scss'
 
 export default function Polling() {
   const { chainId } = useActiveWeb3React()
@@ -80,10 +30,10 @@ export default function Polling() {
 
   return (
     <ExternalLink href={chainId && blockNumber ? getEtherscanLink(chainId, blockNumber.toString(), 'block') : ''}>
-      <StyledPolling>
-        <TYPE.small>{blockNumber}</TYPE.small>
-        <StyledPollingDot>{!isMounted && <Spinner />}</StyledPollingDot>
-      </StyledPolling>
+      <div className={styles.polling}>
+        {blockNumber}
+        <span className={styles.dot}>{!isMounted && <i className={styles.spinner} />}</span>
+      </div>
     </ExternalLink>
   )
 }

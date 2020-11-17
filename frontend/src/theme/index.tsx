@@ -8,7 +8,6 @@ import styled, {
 import { useIsDarkMode } from '../state/user/hooks'
 import { Text, TextProps } from 'rebass'
 import { Colors } from './styled'
-import bg from '../assets/svg/bg.jpeg'
 
 export * from './components'
 
@@ -227,21 +226,4 @@ html {
       background: ${({ theme }) => theme.swapInput};
     }
   }
-
-body {
-  color: ${({ theme }) => theme.label};
-  min-height: 100vh;
-  background: url(${() => bg}) no-repeat top;
-  background-size: cover;
-  position: relative;
-  &:before{
-    width: 100%;
-    min-height: 100vh;
-    top: 0;
-    bottom: 0;
-    position: absolute;
-    content: '';
-    background-color: rgba(0,0,0, 0.4);
-  }
-}
 `

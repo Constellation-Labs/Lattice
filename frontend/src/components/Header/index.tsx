@@ -4,7 +4,6 @@ import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Logo from '../../assets/svg/logo.svg'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
@@ -13,26 +12,7 @@ import Settings from '../Settings'
 import Row, { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 
-const HeaderFrame = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  top: 0;
-  position: relative;
-  padding: 1.2rem 1rem 1rem 1rem;
-  z-index: 2;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-    width: calc(100%);
-    position: relative;
-  `};
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-        padding: 0.5rem 1rem;
-  `}
-`
+import styles from './index.module.scss'
 
 const HeaderControls = styled.div`
   display: flex;
@@ -67,11 +47,6 @@ const HeaderElement = styled.div`
   `};
 `
 
-const HeaderElementWrap = styled.div`
-  display: flex;
-  align-items: center;
-`
-
 const HeaderRow = styled(RowFixed)`
   ${({ theme }) => theme.mediaWidth.upToMedium`
    width: 100%;
@@ -84,20 +59,6 @@ const HeaderLinks = styled(Row)`
     padding: 1rem 0 1rem 1rem;
     justify-content: flex-end;
 `};
-`
-
-const AccountElement = styled.div<{ active: boolean }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${({ theme }) => theme.baseBg};
-  border-radius: 12px;
-  white-space: nowrap;
-  width: 100%;
-  cursor: pointer;
-  :focus {
-    border: 1px solid blue;
-  }
 `
 
 const HideSmall = styled.span`
@@ -130,62 +91,6 @@ const BalanceText = styled(Text)`
   font-size: 12px;
 `
 
-const Title = styled.a`
-  display: flex;
-  align-items: center;
-  pointer-events: auto;
-  justify-self: flex-start;
-  margin-right: 120px;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    justify-self: center;
-  `};
-  :hover {
-    cursor: pointer;
-  }
-`
-
-const LattIcon = styled.div`
-  transition: transform 0.3s ease;
-  :hover {
-    transform: rotate(-5deg);
-  }
-`
-
-const StyledNavLink = styled(NavLink)`
-  ${({ theme }) => theme.flexRowNoWrap};
-  height: 30px;
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 12px;
-  width: fit-content;
-  margin: 0 10px;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.5rem;
-  min-width: 60px;
-`
-
-const StyledNavSwapLink = styled(StyledNavLink)`
-  background: linear-gradient(180deg, #abf4fa 0%, rgba(171, 244, 250, 0) 100%);
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25);
-  color: white;
-`
-const StyledNavPoolLink = styled(StyledNavLink)`
-  background: linear-gradient(180deg, #f19e9c 0%, rgba(241, 158, 156, 0) 100%);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
-  color: white;
-`
-
-const StyledNavAggreLink = styled(StyledNavLink)`
-  background: linear-gradient(180deg, #abf4fa 0%, rgba(171, 244, 250, 0) 100%);
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25);
-  color: white;
-`
-
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
@@ -200,23 +105,18 @@ export default function Header() {
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
 
   return (
-    <HeaderFrame>
+    <div className={styles.wrapper}>
       <HeaderRow>
-        <Title href=".">
-          <LattIcon>
-            <img width={'70px'} src={Logo} alt="logo" />
-          </LattIcon>
-        </Title>
         <HeaderLinks>
-          <StyledNavSwapLink id={`swap-nav-link`} to={'/swap'}>
+          <NavLink className={styles.navLink} id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
-          </StyledNavSwapLink>
-          <StyledNavPoolLink id={`pool-nav-link`} to={'/pool'}>
+          </NavLink>
+          <NavLink className={styles.navLink} id={`pool-nav-link`} to={'/pool'}>
             {t('pool')}
-          </StyledNavPoolLink>
-          <StyledNavAggreLink id={`aggregation-nav-link`} to={'/poly'}>
+          </NavLink>
+          <NavLink className={styles.navLink} id={`aggregation-nav-link`} to={'/poly'}>
             {t('aggregation')}
-          </StyledNavAggreLink>
+          </NavLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -226,19 +126,17 @@ export default function Header() {
               <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
             )}
           </HideSmall>
-          <AccountElement active={!!account} style={{ pointerEvents: 'auto', transform: 'translateY(-1px)' }}>
+          <div style={{ pointerEvents: 'auto', transform: 'translateY(-1px)' }}>
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
                 {userEthBalance?.toSignificant(4)} ETH
               </BalanceText>
             ) : null}
             <Web3Status />
-          </AccountElement>
+          </div>
         </HeaderElement>
-        <HeaderElementWrap>
-          <Settings />
-        </HeaderElementWrap>
+        <Settings />
       </HeaderControls>
-    </HeaderFrame>
+    </div>
   )
 }
