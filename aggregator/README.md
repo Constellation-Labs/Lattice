@@ -2,7 +2,10 @@
 
 On-chain DEX aggregator based on 1inch protocol
 
-Currently it supports Uniswap V2 and Mooniswap. More to be added.
+Currently it supports Uniswap V2, Mooniswap, Sushiswap and Lattice's basic swap. More to be added.
+
+## Deployed Contracts
+- OneSplitAudit@Ropsten - https://ropsten.etherscan.io/address/0x1d54420AdBe011C3115b72CcB876cFcBD8e3aa59
 
 ## How to use it
 To swap tokens you need to first call method `getExpectedReturn` (see methods section), it returns `distribution` array. Each element of this array matches element of exchanges and represents fraction of trading volume.<br>

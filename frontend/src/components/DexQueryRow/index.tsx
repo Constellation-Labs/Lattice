@@ -2,21 +2,20 @@ import { darken } from 'polished'
 import React, { useEffect, useState } from 'react'
 import { Text } from 'rebass'
 import styled from 'styled-components'
-import _ from 'lodash'
-
 import Card, { GreyCard } from '../Card'
 import { AutoColumn } from '../Column'
 import { RowBetween, RowRelative } from '../Row'
-import { formatUnits } from '@ethersproject/units'
-import { Field } from '../../state/poly/actions'
-import { getQuoteQuery, parseTypedValue, usePolyState } from '../../state/poly/hooks'
+import {
+  usePolyState,
+  fullFlags,
+  dexResultMap,
+  getDexCodeSum,
+  useQuotaQueryCallback,
+  useQuotaQueryCallbackParams
+} from '../../state/poly/hooks'
 import { useOneSplitContract } from '../../hooks/useAgregator'
-import { useCurrency } from '../../hooks/Tokens'
 
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../state'
-// import { setDexResult } from '../../state/poly/actions'
-// import { stringify } from 'querystring'
+import _ from 'lodash'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -33,67 +32,76 @@ export const HoverCard = styled(Card)`
     border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
   }
 `
-const dexResutMap = {
-  Mooniswap: 0,
-  Uniswap: 1
+
+const getSumDis = (arr: any[]) => {
+  let sum = 0
+  _.each(arr, v => {
+    sum += +v
+  })
+  return sum
 }
 
 interface DexQueryRow {
   id?: string
   name?: string
+  code?: string
   logo?: string
-  amount?: string
-  diff?: number
   active?: boolean
 }
 
-function DexQueryRow({ id, name, active }: DexQueryRow) {
-  const [amount, setAmount] = useState<string>()
-  const [diff, setDiff] = useState<string>()
+function DexQueryRow({ name, code, id, active }: DexQueryRow) {
   const {
-    typedValue,
-    [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId },
     result: { distribution }
   } = usePolyState()
-  const dispatch = useDispatch<AppDispatch>()
+  const { inputCurrencyId, outputCurrency, parsedValue, outputCurrencyId } = useQuotaQueryCallbackParams()
+  const { callback: quotaQueryCallback } = useQuotaQueryCallback()
+  const [amount, setAmount] = useState('')
+  const [diff, setDiff] = useState('')
   const splitContract = useOneSplitContract()
-  const inputCurrency = useCurrency(inputCurrencyId)
-  const outCurrency = useCurrency(outputCurrencyId)
-  const parsedValue = parseTypedValue(typedValue, inputCurrency)
-  //TODO
-  const enableId = id
-  useEffect(() => {
-    console.log(typedValue, 'par', parsedValue, '-----------$$$$$$')
-    const queryAmount = async () => {
-      //todo
-      if (!splitContract || !inputCurrencyId || !outputCurrencyId || !typedValue) return
-      const decimals = outCurrency?.decimals
-      const res = await getQuoteQuery(splitContract, enableId, inputCurrencyId, outputCurrencyId, parsedValue)
-      const distribute = distribution.split(',')
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const index = dexResutMap[id]
-      setDiff(typedValue > '0' && active ? distribute[index] * 10 + '%' : '-')
-      const formatValue = Number(formatUnits(res.returnAmount, decimals).toString()).toFixed(6)
-      setAmount(typedValue > '0' ? formatValue : '-')
-      // dispatch(setDexResult({ dexResult: {id, returnAmount: formatValue } }))
-    }
-    queryAmount()
-  }, [
-    inputCurrencyId,
-    outputCurrencyId,
-    typedValue,
-    parsedValue,
-    dispatch,
-    outCurrency,
-    id,
-    distribution,
-    splitContract,
-    enableId,
-    active
-  ])
+  const distribute = _.split(distribution, ',')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const sum = getSumDis(distribute)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  const disSlice = dexResultMap[id]
+  const dis = distribute.slice(disSlice[0], disSlice[disSlice.length - 1] + 1)
+  const disSum = getSumDis(dis)
+  const flag = _.filter(fullFlags, v => {
+    return v !== code
+  })
+  const _flag = getDexCodeSum(flag)
 
+  useEffect(() => {
+    async function getQuery() {
+      const res = await quotaQueryCallback(_flag)
+      if (res) {
+        const { formatValue } = res
+        setAmount(formatValue.toString())
+      }
+      if (dis && sum) {
+        setDiff(`${((+disSum / sum) * 100).toFixed(2)}%`)
+      } else {
+        setDiff('')
+      }
+    }
+    if (active && inputCurrencyId && outputCurrencyId && parsedValue) {
+      getQuery()
+    } else {
+      setAmount('')
+      setDiff('')
+    }
+  }, [
+    active,
+    inputCurrencyId,
+    parsedValue,
+    splitContract,
+    outputCurrency,
+    dis,
+    sum,
+    _flag,
+    quotaQueryCallback,
+    outputCurrencyId
+  ])
   return (
     <>
       {
@@ -108,7 +116,7 @@ function DexQueryRow({ id, name, active }: DexQueryRow) {
               </RowRelative>
               <RowRelative width={80}>
                 <Text fontWeight={100} fontSize={20}>
-                  {amount ? amount : '-'}
+                  {Number(amount) ? amount : '-'}
                 </Text>
               </RowRelative>
               <RowRelative width={20}>

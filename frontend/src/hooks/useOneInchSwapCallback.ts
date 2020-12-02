@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE, ETH_ADDRESS } from '../constants'
 // import { getTradeVersion, useV1TradeExchangeAddress } from '../data/V1'
 import { useTransactionAdder } from '../state/transactions/hooks'
-import {  isAddress, shortenAddress, calculateGasMargin } from '../utils'
+import { isAddress, shortenAddress, calculateGasMargin } from '../utils'
 // import isZero from '../utils/isZero'
 // import v1SwapArguments from '../utils/v1SwapArguments'
 import { useActiveWeb3React } from './index'
@@ -24,11 +24,7 @@ import { useToken } from '../hooks/Tokens'
 import { tryParseSwapAmount } from '../state/swap/hooks'
 import isZero from '../utils/isZero'
 
-
-import {
-  usePolyState,
-  // parseTypedValue
-} from '../state/poly/hooks'
+import { usePolyState, getDexCodeSum } from '../state/poly/hooks'
 import { BigNumber } from 'ethers'
 export const ZERO = JSBI.BigInt(0)
 
@@ -120,7 +116,6 @@ function toHex(currencyAmount: CurrencyAmount) {
 
 const ZERO_HEX = '0x0'
 
-
 /**
  * Returns the swap calls that can be used to make the trade
  * @param trade trade to execute
@@ -134,7 +129,7 @@ function useSwapCallArguments(
   input: CurrencyAmount | undefined,
   output: CurrencyAmount | undefined,
   distribution: number[],
-  flag:string,
+  flag: string,
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   recipientAddressOrName: string | null | undefined // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
@@ -149,7 +144,20 @@ function useSwapCallArguments(
 
   return useMemo(() => {
     // const tradeVersion = getTradeVersion(trade)
-    if (!oneSplit || !recipient || !library || !account || !chainId || !deadline || !fromToken || !destToken || !input || !output || !distribution) return []
+    if (
+      !oneSplit ||
+      !recipient ||
+      !library ||
+      !account ||
+      !chainId ||
+      !deadline ||
+      !fromToken ||
+      !destToken ||
+      !input ||
+      !output ||
+      !distribution
+    )
+      return []
 
     const contract: Contract | null = oneSplit
     if (!contract) {
@@ -157,7 +165,7 @@ function useSwapCallArguments(
     }
 
     const swapMethods = []
-
+    // console.log('allowedSlippage ======', allowedSlippage)
     swapMethods.push(
       swapCallParameters(oneSplit, fromToken, destToken, input, output, distribution, flag, {
         feeOnTransfer: false,
@@ -178,12 +186,26 @@ function useSwapCallArguments(
     //   )
     // }
     return swapMethods.map(parameters => ({ parameters, contract }))
-  }, [account, allowedSlippage, chainId, deadline, library, recipient, fromToken, destToken, input, output, distribution])
+  }, [
+    account,
+    allowedSlippage,
+    chainId,
+    deadline,
+    library,
+    recipient,
+    fromToken,
+    destToken,
+    input,
+    output,
+    distribution
+  ])
 }
 
 // returns a function that will execute a swap, if the parameters are all valid
 // and the user has approved the slippage adjusted input amount for the trade
 export function useSwapCallback(
+  allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
+): {
   // oneSplit: Contract | undefined, // trade to execute, required
   // fromToken: Token | undefined | null,
   // destToken: Token | undefined | null,
@@ -192,18 +214,18 @@ export function useSwapCallback(
   // distribution: number[],
   // allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
   // recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
-): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
+  state: SwapCallbackState
+  callback: null | (() => Promise<string>)
+  error: string | null
+} {
   const { account, chainId, library } = useActiveWeb3React()
-   // swap state
-   const { 
-     typedValue,
-    result:{
-      returnAmount,
-      distribution
-    },
+  // swap state
+  const {
+    typedValue,
+    result: { returnAmount, distribution },
     [Field.INPUT]: { currencyId: inputCurrencyId },
     [Field.OUTPUT]: { currencyId: outputCurrencyId },
-    flag
+    flags
   } = usePolyState()
   // console.log(typedValue, inputCurrencyId , outputCurrencyId, '**************')
   const oneSplit = useOneSplitContract()
@@ -212,9 +234,10 @@ export function useSwapCallback(
   const input = tryParseSwapAmount(typedValue, fromToken)
   const output = tryParseSwapAmount(returnAmount, destToken)
   const distribute = distribution?.split(',')
+  const _flag = getDexCodeSum(flags)
   // console.log(oneSplit, fromToken, destToken, input, output, distribution, '**************')
 
-  const swapCalls = useSwapCallArguments(oneSplit, fromToken, destToken, input, output, distribute, flag, 50, account)
+  const swapCalls = useSwapCallArguments(oneSplit, fromToken, destToken, input, output, distribute, _flag, allowedSlippage, account,)
 
   const addTransaction = useTransactionAdder()
 
@@ -240,7 +263,6 @@ export function useSwapCallback(
     return {
       state: SwapCallbackState.VALID,
       callback: async function onSwap(): Promise<string> {
-        
         // const estimatedCalls: EstimatedSwapCall[] = await Promise.all(
         //   swapCalls.map(call => {
         //     const {
@@ -301,9 +323,12 @@ export function useSwapCallback(
         //   },
         //   gasEstimate
         // } = successfulEstimation
-        let {contract,parameters:{methodName,args,value }} = swapCalls[0]
-        return contract[methodName](...args,  {
-          gasLimit: calculateGasMargin(BigNumber.from(640000)),
+        const {
+          contract,
+          parameters: { methodName, args, value }
+        } = swapCalls[0]
+        return contract[methodName](...args, {
+          gasLimit: calculateGasMargin(BigNumber.from(940000)),
           ...(value && !isZero(value) ? { value, from: account } : { from: account })
         })
           .then((response: any) => {
@@ -314,12 +339,7 @@ export function useSwapCallback(
 
             const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
             const withRecipient =
-              recipient === account
-                ? base
-                : `${base} to ${ isAddress(account)
-                  ? shortenAddress(account)
-                  : account
-                }`
+              recipient === account ? base : `${base} to ${isAddress(account) ? shortenAddress(account) : account}`
 
             // const withVersion =
             //   tradeVersion === Version.v2 ? withRecipient : `${withRecipient} on ${(tradeVersion as any).toUpperCase()}`
@@ -341,11 +361,24 @@ export function useSwapCallback(
               throw new Error(`Swap failed: ${error.message}`)
             }
           })
-        
       },
       error: null
     }
-  }, [library, account, chainId, recipient, swapCalls, addTransaction, output, input, fromToken,inputCurrencyId, outputCurrencyId, destToken, distribution])
+  }, [
+    library,
+    account,
+    chainId,
+    recipient,
+    swapCalls,
+    addTransaction,
+    output,
+    input,
+    fromToken,
+    inputCurrencyId,
+    outputCurrencyId,
+    destToken,
+    distribution
+  ])
 }
 
 export function swapCallParameters(
@@ -355,8 +388,9 @@ export function swapCallParameters(
   input: CurrencyAmount | undefined,
   output: CurrencyAmount | undefined,
   distribution: number[],
-  flag:string,
-  options: TradeOptions | TradeOptionsDeadline): SwapParameters {
+  flag: string,
+  options: TradeOptions | TradeOptionsDeadline
+): SwapParameters {
   const etherIn = fromToken?.address === ETH_ADDRESS
   const etherOut = destToken?.address === ETH_ADDRESS
   // the router does not support both ether in and out
@@ -420,9 +454,15 @@ export function swapCallParameters(
   // }
   methodName = 'swap'
 
-  args = [fromToken ? fromToken.address : ZERO_HEX, destToken ? destToken.address : ZERO_HEX, amountIn, amountOut, distribution, flag]
-  value = etherIn ?amountIn: ZERO_HEX
-
+  args = [
+    fromToken ? fromToken.address : ZERO_HEX,
+    destToken ? destToken.address : ZERO_HEX,
+    amountIn,
+    amountOut,
+    distribution,
+    flag
+  ]
+  value = etherIn ? amountIn : ZERO_HEX
 
   return {
     methodName,

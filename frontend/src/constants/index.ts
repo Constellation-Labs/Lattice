@@ -9,13 +9,12 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export const ETH_ADDRESS = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 
-
 export const FACTORY_ADDRESS = '0x19f013e9cbc09ae03b8d1067fb74745a728ac104'
 
 export const INIT_CODE_HASH = '0x3a9134453217dd648117f26f7411f8eb24b35fdd01b0d61b164c1aca0c2336e8'
 
 // 1inch contract
-export const ONE_SPLIT_ADRESS = '0x0FB21327D7Bf323bfb5c7A33F6CFf0da4Dd7e09c'
+export const ONE_SPLIT_ADRESS = '0x1d54420AdBe011C3115b72CcB876cFcBD8e3aa59'
 
 // export const FLAGS = {
 //   "Lattice": "",

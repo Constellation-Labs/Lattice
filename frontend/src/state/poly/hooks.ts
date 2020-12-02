@@ -1,50 +1,46 @@
 import { Currency, ETHER, Token, CurrencyAmount, JSBI, TokenAmount } from 'lattswap'
-import { ParsedQs } from 'qs'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useActiveWeb3React } from '../../hooks'
 import { useCurrency } from '../../hooks/Tokens'
 import { parseUnits, formatUnits } from '@ethersproject/units'
-import { isAddress } from '../../utils'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
-import { Field, selectCurrency, switchCurrencies, typeInput, setDex, setResult, setFlag } from './actions'
-import { PolyState } from './reducer'
-import customFetch from '../../utils/fetch'
-import { useOneSplitContract } from '../../hooks/useAgregator'
-import { FLAGS, REVERT_FLAGS } from '../../constants'
-import { Contract } from 'ethers'
 import _ from 'lodash'
+import { Field, selectCurrency, switchCurrencies, typeInput, setDex } from './actions'
+import { useOneSplitContract } from '../../hooks/useAgregator'
+
+export const getDexCodeSum = (dexCodes: any) => {
+  const sumCode = _.reduce(
+    dexCodes,
+    (sum, n) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return parseInt(sum) + parseInt(n)
+    },
+    0
+  )
+  return `0x${sumCode.toString(16)}`
+}
+
+export const UNISWAPCODE = getDexCodeSum(['0x04', '0x08'])
+export const SUSHISWAPCODE = getDexCodeSum(['0x2000', '0x4000'])
+export const MOONISWAPCODE = getDexCodeSum(['0x02', '0x400'])
+export const BALANCERCODE = getDexCodeSum(['0x20000', '0x40000', '0x80000'])
+export const BASICSWAPCODE = getDexCodeSum(['0x200000', '0x400000'])
+
+export const fullFlags = [UNISWAPCODE, SUSHISWAPCODE, MOONISWAPCODE, BALANCERCODE]
+
+export const dexResultMap = {
+  Uniswap: [0, 1],
+  Sushiswap: [2, 3],
+  Mooniswap: [4, 5],
+  Balancer: [6, 7, 8],
+  Basicswap: [9, 10]
+}
 
 export function usePolyState(): AppState['poly'] {
   return useSelector<AppState, AppState['poly']>(state => state.poly)
-}
-
-export function useSwapCallback() {
-  const { result } = usePolyState()
-  return useCallback(async () => {
-    const { fromToken = {}, toToken = {}, toTokenAmount = 0 } = result
-    const { symbol: fromTokenSymbol, address: fromTokenAddress } = fromToken
-    const { symbol: toTokenSymbol, address: toTokenAddress } = toToken
-    const amount = toTokenAmount
-    const disableEstimate = true
-    const params = {
-      fromTokenSymbol,
-      fromTokenAddress,
-      toTokenSymbol,
-      toTokenAddress,
-      amount,
-      disableEstimate,
-      slippage: '0.1',
-      fee: '0.1',
-      gasPrice: 9900000001,
-      fromAddress: '0xE8C902e5A810c2368c6eFefcb23B52Efc280aFe0'
-    }
-    const response = await customFetch(`${window.location.origin}/swap.json`, params)
-    if (response && response.value) {
-      window.alert('success')
-    }
-  }, [result])
 }
 
 // try to parse a user entered amount for a given token
@@ -125,16 +121,60 @@ export function usePolyActionHandlers(): {
   }
 }
 
-export function useDerivedPolyInfo() {
-  const dispatch = useDispatch<AppDispatch>()
-  const { account } = useActiveWeb3React()
-  const splitContract = useOneSplitContract()
-
+export function useQuotaQueryCallbackParams() {
   const {
     typedValue,
     [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId },
-    dex
+    [Field.OUTPUT]: { currencyId: outputCurrencyId }
+  } = usePolyState()
+  const inputCurrency = useCurrency(inputCurrencyId)
+  const outputCurrency = useCurrency(outputCurrencyId)
+  const parsedValue = parseTypedValue(typedValue, inputCurrency)
+  return useMemo(() => {
+    return {
+      inputCurrency,
+      inputCurrencyId,
+      outputCurrency,
+      outputCurrencyId,
+      parsedValue
+    }
+  }, [inputCurrency, inputCurrencyId, outputCurrency, outputCurrencyId, parsedValue])
+}
+
+export function useQuotaQueryCallback() {
+  const splitContract = useOneSplitContract()
+  const { outputCurrency, parsedValue, inputCurrencyId, outputCurrencyId } = useQuotaQueryCallbackParams()
+  return useMemo(() => {
+    return {
+      callback: async (flag: any) => {
+        let result
+        try {
+          if (!splitContract) return null
+          const fromToken = inputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : inputCurrencyId
+          const destToken = outputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : outputCurrencyId
+          const res = await splitContract.getExpectedReturn(fromToken, destToken, parsedValue, 100, flag)
+          const distribution = res.distribution.toString()
+          const decimals = outputCurrency?.decimals
+          const formatValue = Number(formatUnits(res.returnAmount, decimals).toString()).toFixed(6)
+          result = {
+            formatValue,
+            distribution
+          }
+        } catch (e) {
+          result = null
+        }
+        return result
+      }
+    }
+  }, [inputCurrencyId, outputCurrency, outputCurrencyId, parsedValue, splitContract])
+}
+
+export function useDerivedPolyInfo() {
+  const { account } = useActiveWeb3React()
+  const {
+    typedValue,
+    [Field.INPUT]: { currencyId: inputCurrencyId },
+    [Field.OUTPUT]: { currencyId: outputCurrencyId }
   } = usePolyState()
 
   const inputCurrency = useCurrency(inputCurrencyId)
@@ -166,118 +206,10 @@ export function useDerivedPolyInfo() {
   if (balanceIn && approveAmount && balanceIn.lessThan(approveAmount)) {
     inputError = 'Insufficient ' + inputCurrency?.symbol + ' balance'
   }
-  const parsedValue = parseTypedValue(typedValue, inputCurrency)
-  useEffect(() => {
-    async function getQuote() {
-      if (!splitContract) return
-      try {
-        const fromToken = inputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : inputCurrencyId
-        const destToken = outputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : outputCurrencyId
-        let flag = '0'
-        let disableIndex = '-1'
-        _.each(dex, (value, key) => {
-          if (!value.active) {
-            disableIndex = key
-          }
-        })
-        if (disableIndex !== '-1') {
-          // @ts-ignore
-          flag = REVERT_FLAGS.get(disableIndex)
-
-          dispatch(setFlag({ flag }))
-        } else {
-          dispatch(setFlag({ flag }))
-        }
-
-        // const res = await splitContract.getExpectedReturn(fromToken, destToken, parsedValue, 100, 0)
-        const res = await splitContract.getExpectedReturn(fromToken, destToken, parsedValue, 10, flag)
-        const distribution = res.distribution.toString()
-        const decimals = outputCurrency?.decimals
-        const formatValue = Number(formatUnits(res.returnAmount, decimals).toString()).toFixed(6)
-        dispatch(setResult({ result: { returnAmount: formatValue, distribution } }))
-      } catch (e) {
-        console.log(e, 'error')
-      }
-    }
-    if (!inputError) {
-      getQuote()
-    }
-  }, [splitContract, inputCurrencyId, outputCurrencyId, dispatch, inputError, parsedValue, outputCurrency, dex])
-
   return {
     currencies,
     currencyBalances,
     inputError,
     approveAmount
   }
-}
-
-function parseCurrencyFromURLParameter(urlParam: any): string {
-  if (typeof urlParam === 'string') {
-    const valid = isAddress(urlParam)
-    if (valid) return valid
-    if (urlParam.toUpperCase() === 'ETH') return 'ETH'
-    if (valid === false) return 'ETH'
-  }
-  return 'ETH' ?? ''
-}
-
-function parseTokenAmountURLParameter(urlParam: any): string {
-  return typeof urlParam === 'string' && !isNaN(parseFloat(urlParam)) ? urlParam : ''
-}
-
-export function queryParametersToPolyState(parsedQs: ParsedQs): PolyState {
-  let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency)
-  let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency)
-  if (inputCurrency === outputCurrency) {
-    if (typeof parsedQs.outputCurrency === 'string') {
-      inputCurrency = ''
-    } else {
-      outputCurrency = ''
-    }
-  }
-
-  return {
-    result: {},
-    [Field.INPUT]: {
-      currencyId: inputCurrency
-    },
-    [Field.OUTPUT]: {
-      currencyId: outputCurrency
-    },
-    typedValue: parseTokenAmountURLParameter(parsedQs.exactAmount),
-    flag: '0'
-  }
-}
-
-export function useDefaultsFromQuery() {
-  const { chainId } = useActiveWeb3React()
-  const {
-    typedValue,
-    [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId }
-  } = usePolyState()
-
-  useEffect(() => {
-    if (!chainId) return
-  }, [chainId, typedValue, inputCurrencyId, outputCurrencyId])
-
-  return ''
-}
-
-export async function getQuoteQuery(
-  splitContract: Contract,
-  enabledDexId: number | string | undefined,
-  inputCurrencyId: string,
-  outputCurrencyId: string,
-  parsedValue: string | undefined
-) {
-  if (!splitContract) return '-'
-  const fromToken = inputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : inputCurrencyId
-  const destToken = outputCurrencyId === 'ETH' ? '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE' : outputCurrencyId
-  let flag = 0
-  if (enabledDexId) {
-    flag = FLAGS.get(enabledDexId)
-  }
-  return await splitContract.getExpectedReturn(fromToken, destToken, parsedValue, 1, flag)
 }
