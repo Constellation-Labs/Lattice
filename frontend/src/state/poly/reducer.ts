@@ -1,22 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
-import {
-  Field,
-  replacePolyState,
-  selectCurrency,
-  switchCurrencies,
-  typeInput,
-  setResult,
-  setDex,
-  setDexResult,
-  setFlag
-} from './actions'
-import { cloneDeep } from 'lodash'
+import { Field, replacePolyState, selectCurrency, switchCurrencies, typeInput, setResult, setDex } from './actions'
 import _ from 'lodash'
-
-const dexResutMap = {
-  Mooniswap: 0,
-  Uniswap: 1
-}
+import { dexResultMap, UNISWAPCODE, SUSHISWAPCODE, MOONISWAPCODE, BALANCERCODE, BASICSWAPCODE } from './hooks'
 
 export interface PolyState {
   readonly typedValue: string
@@ -26,36 +11,54 @@ export interface PolyState {
   readonly [Field.OUTPUT]: {
     readonly currencyId: string | undefined
   }
+  readonly flags?: any
   readonly result?: any
-  readonly dex?: Record<string, any>
-  readonly flag: string
+  readonly dex: Record<string, any>
 }
 
 const initialState: PolyState = {
   typedValue: '',
-  flag: '0',
   [Field.INPUT]: {
     currencyId: ''
   },
   [Field.OUTPUT]: {
     currencyId: ''
   },
+  flags: [],
   result: {
     returnAmount: '0',
     distribution: '0,0,0,0'
   },
   dex: {
-    Mooniswap: {
-      id: 'Mooniswap',
-      name: 'Mooniswap',
-      active: true,
-      amount: undefined
-    },
     Uniswap: {
+      code: UNISWAPCODE,
+      codeList: ['0x04', '0x08'],
       id: 'Uniswap',
-      name: 'Uniswap',
-      active: true,
-      amount: undefined
+      name: 'Uniswap'
+    },
+    Sushiswap: {
+      code: SUSHISWAPCODE,
+      codeList: ['0x2000', '0x4000'],
+      id: 'Sushiswap',
+      name: 'Sushiswap'
+    },
+    Mooniswap: {
+      code: MOONISWAPCODE,
+      codeList: ['0x02', '0x400'],
+      id: 'Mooniswap',
+      name: 'Mooniswap'
+    },
+    Balancer: {
+      code: BALANCERCODE,
+      codeList: ['0x20000', '0x40000', '0x80000'],
+      id: 'Balancer',
+      name: 'Balancer'
+    },
+    Basicswap: {
+      code: BASICSWAPCODE,
+      codeList: ['0x200000', '0x400000'],
+      id: 'Basicswap',
+      name: 'Basicswap'
     }
   }
 }
@@ -85,30 +88,38 @@ export default createReducer<PolyState>(initialState, builder =>
           }
         }
       ) => {
-        const { dex } = state
-        let sum = 0
-        _.each(dex, ({ active }) => {
-          if (active) {
-            sum += 1
-          }
-        })
-        if (sum !== 2 && active === false) {
-          return
+        let flags = _.cloneDeep(state.flags)
+        if (!active) {
+          flags.push(id)
+          flags = _.uniq(flags)
+        } else {
+          flags = _.filter(flags, v => {
+            return v !== id
+          })
         }
-        const __dex = cloneDeep(dex)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        __dex[id].active = active
         return {
           ...state,
-          dex: __dex
+          flags
         }
       }
     )
     .addCase(setResult, (state, { payload: { result } }) => {
+      const { distribution } = result
+      const { dex } = state
+      const flags: any[] = []
+      const distributionArr = _.split(distribution, ',')
+      _.each(dex, ({ code }, key) => {
+        // @ts-ignore
+        const sliceIndex = dexResultMap[key]
+        const sliceArr = distributionArr.slice(sliceIndex[0], sliceIndex[sliceIndex.length - 1] + 1)
+        if (_.every(sliceArr, v => +v <= 0)) {
+          flags.push(code)
+        }
+      })
       return {
         ...state,
-        result
+        result,
+        flags
       }
     })
     .addCase(selectCurrency, (state, { payload: { currencyId, field } }) => {
@@ -140,61 +151,6 @@ export default createReducer<PolyState>(initialState, builder =>
       return {
         ...state,
         typedValue
-      }
-      // @ts-ignore
-    })
-    .addCase(setFlag, (state, { payload: { flag } }) => {
-      return {
-        ...state,
-        flag
-      }
-    })
-    .addCase(setDexResult, (state, { payload: { dexResult } }) => {
-      const { dex, result } = state
-
-      const { returnAmount, id } = dexResult || {}
-      const distributionArr = _.split(result.distribution, ',')
-      // @ts-ignore
-      const disIndex = dexResutMap[id]
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      const selectDex = dex[id]
-      // @ts-ignore
-      dex[id] = {
-        ...selectDex,
-        amount: returnAmount,
-        diff: distributionArr[disIndex]
-      }
-
-      // const index = _.findIndex(distributionArr, i => i > '0')
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      // const indexKey = dexResutMap[+index]
-      // const __dex = _.cloneDeep(dex)
-
-      // _.each(__dex, (value, key) => {
-      //   if (indexKey === key) {
-      //     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      //     // @ts-ignore
-      //     __dex[id] = {
-      //       ...value,
-      //       amount: returnAmount,
-      //       // active: returnAmount > 0 ? !!1 : !!0
-      //       diff: distributionArr[index]
-      //     }
-      //   } else {
-      //     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      //     // @ts-ignore
-      //     __dex[key] = {
-      //       ...value,
-      //       amount: 0,
-      //       // active: false
-      //     }
-      //   }
-      // })
-      return {
-        ...state,
-        dex: dex
       }
     })
 )

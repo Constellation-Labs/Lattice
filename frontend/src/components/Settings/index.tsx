@@ -1,18 +1,18 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, {useRef, useState } from 'react'
 import { X } from 'react-feather'
 import { Text } from 'rebass'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import { useExpertModeManager, useUserTransactionTTL, useUserSlippageTolerance } from '../../state/user/hooks'
-import { TYPE } from '../../theme'
+// import { TYPE } from '../../theme'
 import { ButtonError } from '../Button'
 import { AutoColumn } from '../Column'
 import Modal from '../Modal'
-import QuestionHelper from '../QuestionHelper'
-import { RowBetween, RowFixed } from '../Row'
-import Toggle from '../Toggle'
+// import QuestionHelper from '../QuestionHelper'
+import { RowBetween } from '../Row'
+// import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 import settingIcon from '../../assets/svg/setting.svg'
 
@@ -122,7 +122,7 @@ export default function SettingsTab() {
   const open = useModalOpen(ApplicationModal.SETTINGS)
   const toggle = useToggleSettingsMenu()
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
 
   const [ttl, setTtl] = useUserTransactionTTL()
@@ -196,10 +196,10 @@ export default function SettingsTab() {
               deadline={ttl}
               setDeadline={setTtl}
             />
-            <Text fontWeight={600} fontSize={14}>
+            {/* <Text fontWeight={600} fontSize={14}>
               Interface Settings
-            </Text>
-            <RowBetween>
+            </Text> */}
+            {/* <RowBetween>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.white}>
                   Toggle Expert Mode
@@ -221,7 +221,7 @@ export default function SettingsTab() {
                       }
                 }
               />
-            </RowBetween>
+            </RowBetween> */}
           </AutoColumn>
         </MenuFlyout>
       )}

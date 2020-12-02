@@ -1,3 +1,5 @@
+/*eslint-disabled*/
+
 import React from 'react'
 import styled from 'styled-components'
 
@@ -37,12 +39,18 @@ const StyledToggle = styled.button<{ isActive?: boolean; activeElement?: boolean
 export interface ToggleProps {
   id?: string
   isActive: boolean
-  toggle: () => void
+  toggle: (b?: any) => void
 }
 
 export default function Toggle({ id, isActive, toggle }: ToggleProps) {
   return (
-    <StyledToggle id={id} isActive={isActive} onClick={toggle}>
+    <StyledToggle
+      id={id}
+      isActive={isActive}
+      onClick={() => {
+        toggle(!isActive)
+      }}
+    >
       <ToggleElement isActive={isActive} isOnSwitch={true}>
         On
       </ToggleElement>

@@ -17,13 +17,22 @@ import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallbac
 import { ONE_SPLIT_ADRESS } from '../../constants'
 import { useSwapCallback } from '../../hooks/useOneInchSwapCallback'
 import { lighten } from 'polished'
+import { useUserSlippageTolerance } from '../../state/user/hooks'
 
-import { useDefaultsFromQuery, useDerivedPolyInfo, usePolyActionHandlers, usePolyState } from '../../state/poly/hooks'
+import {
+  getDexCodeSum,
+  useDerivedPolyInfo,
+  usePolyActionHandlers,
+  usePolyState,
+  useQuotaQueryCallback,
+  fullFlags
+} from '../../state/poly/hooks'
 import styled from 'styled-components'
 import _ from 'lodash'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../state'
 import { setResult } from '../../state/poly/actions'
+
 
 const PolyWrapper = styled.div`
   position: relative;
@@ -41,7 +50,7 @@ function PolyBody({ children }: { children: React.ReactNode }) {
   return <PolyWrapper>{children}</PolyWrapper>
 }
 
-const Title = styled(Text)<{ fontSize?: string; border?: boolean }>`
+const Title = styled(Text) <{ fontSize?: string; border?: boolean }>`
   font-size: ${({ fontSize }) => fontSize || '24px'};
   text-align: center;
   padding-bottom: 1rem;
@@ -62,23 +71,43 @@ const DexWrapper = styled.div`
 `
 
 export default function Swap() {
-  useDefaultsFromQuery()
-
   const dispatch = useDispatch<AppDispatch>()
   const { account } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
   const toggleWalletModal = useWalletModalToggle()
 
-  const { typedValue, result, dex } = usePolyState()
+  const { typedValue, result, dex, flags } = usePolyState()
+
   const { returnAmount = '0' } = result || {}
+
   const { currencies, inputError: swapInputError, approveAmount } = useDerivedPolyInfo()
+
+  const { callback: quotaQueryCallback } = useQuotaQueryCallback()
 
   const isValid = !!swapInputError
 
   const [approval, approveCallback] = useApproveCallback(approveAmount, ONE_SPLIT_ADRESS)
 
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
+  const [allowedSlippage] = useUserSlippageTolerance()
+
+  useEffect(() => {
+    async function quoteQuery() {
+      try {
+        const data = await quotaQueryCallback(0)
+        if (data) {
+          const { distribution, formatValue } = data
+          dispatch(setResult({ result: { distribution, returnAmount: formatValue } }))
+        }
+      } catch (e) {
+        console.log(e, 'error')
+      }
+    }
+    if (!swapInputError) {
+      quoteQuery()
+    }
+  }, [dispatch, quotaQueryCallback, swapInputError])
 
   useEffect(() => {
     if (approval === ApprovalState.PENDING) {
@@ -94,11 +123,6 @@ export default function Swap() {
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onDexSwitch } = usePolyActionHandlers()
   // const swap = useSwapCallback()
-
-  const handleReset = useCallback(() => {
-    onUserInput(Field.INPUT, '')
-    dispatch(setResult({ result: { returnAmount: '0', distribution: '0,0,0,0' } }))
-  }, [onUserInput, dispatch])
 
   const handleTypeInput = useCallback(
     (value: string) => {
@@ -127,33 +151,30 @@ export default function Swap() {
   )
 
   const handleToggle = useCallback(
-    (id: string, active: boolean) => {
+    async (id: string, active: boolean, code) => {
       onDexSwitch(id, active)
+      let flag
+      if (!active) {
+        flag = [...flags, code]
+      } else {
+        flag = _.filter(flags, v => {
+          return v !== code
+        })
+      }
+      if (flag.length !== fullFlags.length) {
+        const _flag = getDexCodeSum(flag)
+        const data = await quotaQueryCallback(_flag)
+        if (data) {
+          const { distribution, formatValue } = data
+          dispatch(setResult({ result: { distribution, returnAmount: formatValue } }))
+        }
+      }
     },
-    [onDexSwitch]
+    [dispatch, flags, onDexSwitch, quotaQueryCallback]
   )
-  // const oneSplitContract = useOneSplitContract()
+  const { callback: swapCallback } = useSwapCallback(allowedSlippage)
 
-  // const fromCurrency = useToken(inputCurrencyId === 'ETH' ? ETH_ADDRESS : inputCurrencyId )
-  // const destCurrency = useToken(outputCurrencyId === 'ETH' ? ETH_ADDRESS : outputCurrencyId)
-  // const swapAmount = tryParseSwapAmount('1', fromCurrency)
-  // const returnAmount = tryParseSwapAmount('9', destCurrency)
-  // const distribution = [100, 0, 0, 0]
-
-  // const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(oneSplitContract, fromCurrency, destCurrency, swapAmount, returnAmount, distribution, 10, null)
-  // const { callback: swapCallback } = useSwapCallback(oneSplitContract, fromCurrency, destCurrency, swapAmount, returnAmount, distribution, 10, null)
-  const { callback: swapCallback } = useSwapCallback()
-
-  const [
-    {
-      showConfirm
-      // tradeToConfirm,
-      // swapErrorMessage,
-      // attemptingTxn,
-      // txHash
-    },
-    setSwapState
-  ] = useState<{
+  const [{ showConfirm }, setSwapState] = useState<{
     showConfirm: boolean
     // tradeToConfirm: Trade | undefined
     attemptingTxn: boolean
@@ -189,7 +210,6 @@ export default function Swap() {
           swapErrorMessage: undefined,
           txHash: hash
         })
-        handleReset()
       })
       .catch(error => {
         setSwapState({
@@ -253,16 +273,16 @@ export default function Swap() {
               <div style={{ marginTop: '1rem' }}>
                 <RowBetween>
                   {dex &&
-                    _.map(dex, ({ id, name, active }) => {
+                    _.map(dex, ({ id, name, code }) => {
                       return (
                         <div key={id} style={{ display: 'flex', alignItems: 'center' }}>
                           <Toggle
-                            toggle={() => {
-                              if (id != null) {
-                                handleToggle(id, !active)
+                            toggle={status => {
+                              if (code != null) {
+                                handleToggle(code, status, code)
                               }
                             }}
-                            isActive={!!active}
+                            isActive={_.indexOf(flags, code) < 0}
                             id={id}
                           />
                           <Text style={{ marginLeft: '10px' }}>{name}</Text>
@@ -292,8 +312,8 @@ export default function Swap() {
                   ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                     'Approved'
                   ) : (
-                    'Approve ' + currencies[Field.INPUT]?.symbol
-                  )}
+                        'Approve ' + currencies[Field.INPUT]?.symbol
+                      )}
                 </ButtonConfirmed>
                 <ButtonError
                   onClick={() => {
@@ -301,7 +321,7 @@ export default function Swap() {
                   }}
                   width="48%"
                   id="swap-button1"
-                  disabled={!isValid || approval !== ApprovalState.APPROVED}
+                  disabled={isValid || approval !== ApprovalState.APPROVED || flags.length === fullFlags.length}
                   error={isValid}
                 >
                   <Text fontSize={14} fontWeight={500}>
@@ -310,22 +330,22 @@ export default function Swap() {
                 </ButtonError>
               </RowBetween>
             ) : (
-              <RowBetween>
-                <ButtonError
-                  onClick={() => {
-                    handleSwap()
-                  }}
-                  width="100%"
-                  id="swap-button"
-                  disabled={isValid}
-                  error={false}
-                >
-                  <Text fontSize={16} fontWeight={500}>
-                    {swapInputError ? swapInputError : 'swap'}
-                  </Text>
-                </ButtonError>
-              </RowBetween>
-            )}
+                  <RowBetween>
+                    <ButtonError
+                      onClick={() => {
+                        handleSwap()
+                      }}
+                      width="100%"
+                      id="swap-button"
+                      disabled={isValid || approval !== ApprovalState.APPROVED || flags.length === fullFlags.length}
+                      error={false}
+                    >
+                      <Text fontSize={16} fontWeight={500}>
+                        {swapInputError ? swapInputError : 'swap'}
+                      </Text>
+                    </ButtonError>
+                  </RowBetween>
+                )}
           </StyledBottomGrouping>
           <List />
         </Wrapper>

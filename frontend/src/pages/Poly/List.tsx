@@ -1,14 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { formatUnits } from '@ethersproject/units'
-// import { Field } from '../../state/poly/actions'
 import { usePolyState } from '../../state/poly/hooks'
-// import { useOneSplitContract } from '../../hooks/useAgregator'
-// import { useCurrency } from '../../hooks/Tokens'
 import DexQueryRow from '../../components/DexQueryRow'
-// import { useDispatch } from 'react-redux'
-// import { AppDispatch } from '../../state'
-// import { setDexResult } from '../../state/poly/actions'
 
 import _ from 'lodash'
 import { lighten } from 'polished'
@@ -25,30 +18,7 @@ const ListTitle = styled.div`
 `
 
 export default function List() {
-  const { dex } = usePolyState()
-  // const dispatch = useDispatch<AppDispatch>()
-  // const splitContract = useOneSplitContract()
-  // const inputCurrency = useCurrency(inputCurrencyId)
-  // const outCurrency = useCurrency(outputCurrencyId)
-  // const parsedValue = parseTypedValue(typedValue, inputCurrency)
-  // let disabledDexId: string | number | undefined
-  // const disabledDex = _.find(dex, ({ active }) => {
-  //   return active === false
-  // })
-  // if (disabledDex) {
-  //   disabledDexId = disabledDex.id
-  // }
-  // useEffect(() => {
-  //   const queryAmount = async () => {
-  //     if (!splitContract || !inputCurrencyId || !outputCurrencyId || !typedValue) return
-  //     const decimals = outCurrency?.decimals
-  //     const res = await getQuoteQuery(splitContract, disabledDexId, inputCurrencyId, outputCurrencyId, parsedValue)
-  //     const distribution = res.distribution.toString()
-  //     const formatValue = Number(formatUnits(res.returnAmount, decimals).toString()).toFixed(6)
-  //     dispatch(setDexResult({ dexResult: { distribution, returnAmount: formatValue } }))
-  //   }
-  //   queryAmount()
-  // }, [inputCurrencyId, outputCurrencyId, typedValue, splitContract, parsedValue, disabledDexId, dispatch, outCurrency, dex])
+  const { dex, flags } = usePolyState()
   return (
     <ListWrapper>
       {dex && (
@@ -60,8 +30,8 @@ export default function List() {
       )}
       {dex && (
         <>
-          {_.map(dex, ({ id, name, amount, diff, active }) => {
-            return <DexQueryRow key={id} id={id} diff={diff} name={name} amount={amount} active={active} />
+          {_.map(dex, ({ id, name, code }) => {
+            return <DexQueryRow key={id} code={code} active={_.indexOf(flags, code) < 0} id={id} name={name} />
           })}
         </>
       )}
